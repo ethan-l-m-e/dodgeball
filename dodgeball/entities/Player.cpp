@@ -18,21 +18,39 @@ Player::Player(float startX, float startY) {
 }
 
 RectangleShape Player::getShape() {
-    
     return m_Shape;
-    
 }
 
 void Player::moveUp() {
-    
     m_MovingUp = true;
-    
+}
+
+void Player::moveDown() {
+    m_MovingDown = true;
+}
+
+void Player::moveLeft() {
+    m_MovingLeft = true;
+}
+
+void Player::moveRight() {
+    m_MovingRight = true;
 }
 
 void Player::stopUp() {
-    
     m_MovingUp = false;
-    
+}
+
+void Player::stopDown() {
+    m_MovingDown = false;
+}
+
+void Player::stopLeft() {
+    m_MovingLeft = false;
+}
+
+void Player::stopRight() {
+    m_MovingRight = false;
 }
 
 void Player::update(Time dt) {
@@ -40,6 +58,24 @@ void Player::update(Time dt) {
     if (m_MovingUp) {
         
         m_Position.y -= m_Speed * dt.asSeconds();
+        
+    }
+    
+    if (m_MovingDown) {
+        
+        m_Position.y += m_Speed * dt.asSeconds();
+        
+    }
+    
+    if (m_MovingLeft) {
+        
+        m_Position.x -= m_Speed * dt.asSeconds();
+        
+    }
+    
+    if (m_MovingRight) {
+        
+        m_Position.x += m_Speed * dt.asSeconds();
         
     }
     

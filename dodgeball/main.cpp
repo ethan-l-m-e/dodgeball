@@ -41,6 +41,27 @@ int main(int, char const**)
                 player.stopUp();
             }
             
+            // Arrow down
+            if (event.type == Event::KeyPressed && event.key.code == Keyboard::Down) {
+                player.moveDown();
+            } else {
+                player.stopDown();
+            }
+            
+            // Arrow left
+            if (event.type == Event::KeyPressed && event.key.code == Keyboard::Left) {
+                player.moveLeft();
+            } else {
+                player.stopLeft();
+            }
+            
+            // Arrow right
+            if (event.type == Event::KeyPressed && event.key.code == Keyboard::Right) {
+                player.moveRight();
+            } else {
+                player.stopRight();
+            }
+            
         }
         
         // Update the scene

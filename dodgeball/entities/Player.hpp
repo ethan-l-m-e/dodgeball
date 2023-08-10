@@ -24,13 +24,24 @@ private:
     RectangleShape m_Shape;
     float m_Speed = 50.0f;
     bool m_MovingUp = false;
+    bool m_MovingDown = false;
+    bool m_MovingLeft = false;
+    bool m_MovingRight = false;
     
 public:
     
     Player(float startX, float startY);
     RectangleShape getShape();
+    
     void moveUp();
+    void moveDown();
+    void moveLeft();
+    void moveRight();
     void stopUp();
+    void stopDown();
+    void stopLeft();
+    void stopRight();
+    
     void update(Time dt);
     
 };
