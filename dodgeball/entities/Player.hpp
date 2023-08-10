@@ -22,7 +22,7 @@ private:
     
     Vector2f m_Position;
     RectangleShape m_Shape;
-    float m_Speed = 50.0f;
+    float m_Speed = 500.0f;
     bool m_MovingUp = false;
     bool m_MovingDown = false;
     bool m_MovingLeft = false;
