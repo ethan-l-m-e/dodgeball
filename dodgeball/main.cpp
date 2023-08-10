@@ -10,6 +10,12 @@ int main(int, char const**)
 {
     // Create the main window
     RenderWindow window(sf::VideoMode(800, 600), "Dodgeball!");
+    
+    RectangleShape player;
+    
+    player.setSize(Vector2f(50, 50));
+    
+    player.setPosition(375, 275);
 
     // Start the game loop
     while (window.isOpen())
@@ -33,6 +39,7 @@ int main(int, char const**)
         window.clear();
         
         // Draw things here
+        window.draw(player);
         
         // Update the window
         window.display();
