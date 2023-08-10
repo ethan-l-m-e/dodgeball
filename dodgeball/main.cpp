@@ -37,28 +37,40 @@ int main(int, char const**)
             // Arrow up
             if (event.type == Event::KeyPressed && event.key.code == Keyboard::Up) {
                 player.moveUp();
-            } else {
+            }
+            
+            // Release up
+            if (event.type == Event::KeyReleased && event.key.code == Keyboard::Up) {
                 player.stopUp();
             }
             
             // Arrow down
             if (event.type == Event::KeyPressed && event.key.code == Keyboard::Down) {
                 player.moveDown();
-            } else {
+            }
+            
+            // Release down
+            if (event.type == Event::KeyReleased && event.key.code == Keyboard::Down) {
                 player.stopDown();
             }
             
             // Arrow left
             if (event.type == Event::KeyPressed && event.key.code == Keyboard::Left) {
                 player.moveLeft();
-            } else {
+            }
+            
+            // Release left
+            if (event.type == Event::KeyReleased && event.key.code == Keyboard::Left) {
                 player.stopLeft();
             }
             
             // Arrow right
             if (event.type == Event::KeyPressed && event.key.code == Keyboard::Right) {
                 player.moveRight();
-            } else {
+            }
+            
+            // Release right
+            if (event.type == Event::KeyReleased && event.key.code == Keyboard::Right) {
                 player.stopRight();
             }
             
