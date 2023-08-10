@@ -16,7 +16,13 @@ int main(int, char const**)
     player.setSize(Vector2f(50, 50));
     
     player.setPosition(375, 275);
+    
+    float playerSpeed = 50.0f;
+    
+    bool moveUp = false;
 
+    Clock clock;
+    
     // Start the game loop
     while (window.isOpen())
     {
@@ -33,6 +39,22 @@ int main(int, char const**)
             if (event.type == Event::KeyPressed && event.key.code == Keyboard::Escape) {
                 window.close();
             }
+            
+            // Arrow up
+            if (event.type == Event::KeyPressed && event.key.code == Keyboard::Up) {
+                moveUp = true;
+            } else {
+                moveUp = false;
+            }
+        }
+        
+        // Update the scene
+        Time dt = clock.restart();
+        
+        if (moveUp) {
+            Vector2f newPosition = player.getPosition();
+            newPosition.y -= playerSpeed * dt.asSeconds();
+            player.setPosition(newPosition.x, newPosition.y);
         }
 
         // Clear screen
