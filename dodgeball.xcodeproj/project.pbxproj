@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		E6B4FBA92A8536B600FAC01B /* Player.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E6B4FBA72A8536B600FAC01B /* Player.cpp */; };
+		E6B4FBAD2A86D40100FAC01B /* Ball.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E6B4FBAB2A86D40100FAC01B /* Ball.cpp */; };
 		E6EE88582A84AEFD003ABF14 /* ResourcePath.mm in Sources */ = {isa = PBXBuildFile; fileRef = E6EE88572A84AEFD003ABF14 /* ResourcePath.mm */; };
 		E6EE885B2A84AEFD003ABF14 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E6EE885A2A84AEFD003ABF14 /* main.cpp */; };
 /* End PBXBuildFile section */
@@ -16,6 +17,8 @@
 		E69B62932A84CA5300FDB9CE /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		E6B4FBA72A8536B600FAC01B /* Player.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Player.cpp; sourceTree = "<group>"; };
 		E6B4FBA82A8536B600FAC01B /* Player.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Player.hpp; sourceTree = "<group>"; };
+		E6B4FBAB2A86D40100FAC01B /* Ball.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Ball.cpp; sourceTree = "<group>"; };
+		E6B4FBAC2A86D40100FAC01B /* Ball.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Ball.hpp; sourceTree = "<group>"; };
 		E6EE88522A84AEFD003ABF14 /* dodgeball.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = dodgeball.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E6EE88562A84AEFD003ABF14 /* dodgeball-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "dodgeball-Info.plist"; path = "../dodgeball-Info.plist"; sourceTree = "<group>"; };
 		E6EE88572A84AEFD003ABF14 /* ResourcePath.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = ResourcePath.mm; sourceTree = "<group>"; };
@@ -34,13 +37,23 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		E69B629B2A85335D00FDB9CE /* entities */ = {
+		E69B629B2A85335D00FDB9CE /* entity */ = {
 			isa = PBXGroup;
 			children = (
+				E6B4FBAA2A86D3EC00FAC01B /* enemy */,
 				E6B4FBA72A8536B600FAC01B /* Player.cpp */,
 				E6B4FBA82A8536B600FAC01B /* Player.hpp */,
 			);
-			path = entities;
+			path = entity;
+			sourceTree = "<group>";
+		};
+		E6B4FBAA2A86D3EC00FAC01B /* enemy */ = {
+			isa = PBXGroup;
+			children = (
+				E6B4FBAB2A86D40100FAC01B /* Ball.cpp */,
+				E6B4FBAC2A86D40100FAC01B /* Ball.hpp */,
+			);
+			path = enemy;
 			sourceTree = "<group>";
 		};
 		E6EE88482A84AEFD003ABF14 = {
@@ -63,7 +76,7 @@
 		E6EE88542A84AEFD003ABF14 /* dodgeball */ = {
 			isa = PBXGroup;
 			children = (
-				E69B629B2A85335D00FDB9CE /* entities */,
+				E69B629B2A85335D00FDB9CE /* entity */,
 				E6EE88572A84AEFD003ABF14 /* ResourcePath.mm */,
 				E6EE88592A84AEFD003ABF14 /* ResourcePath.hpp */,
 				E6EE885A2A84AEFD003ABF14 /* main.cpp */,
@@ -169,6 +182,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E6B4FBAD2A86D40100FAC01B /* Ball.cpp in Sources */,
 				E6EE885B2A84AEFD003ABF14 /* main.cpp in Sources */,
 				E6EE88582A84AEFD003ABF14 /* ResourcePath.mm in Sources */,
 				E6B4FBA92A8536B600FAC01B /* Player.cpp in Sources */,

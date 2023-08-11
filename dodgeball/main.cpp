@@ -4,7 +4,8 @@
 // Here is a small helper for you! Have a look.
 #include "ResourcePath.hpp"
 
-#include "./entities/Player.hpp"
+#include "./entity/Player.hpp"
+#include "./entity/enemy/Ball.hpp"
 
 using namespace sf;
 
@@ -14,6 +15,8 @@ int main(int, char const**)
     RenderWindow window(sf::VideoMode(800, 600), "Dodgeball!");
     
     Player player = Player(375, 275);
+    
+    Ball enemy = Ball(-50, 100);
 
     Clock clock;
     
@@ -79,12 +82,14 @@ int main(int, char const**)
         // Update the scene
         Time dt = clock.restart();
         player.update(dt);
+        enemy.update(dt);
 
         // Clear screen
         window.clear();
         
         // Draw things here
         window.draw(player.getShape());
+        window.draw(enemy.getShape());
         
         // Update the window
         window.display();
