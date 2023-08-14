@@ -21,6 +21,10 @@ RectangleShape Player::getShape() {
     return m_Shape;
 }
 
+Vector2f Player::getPosition() {
+    return m_Position;
+}
+
 void Player::moveUp() {
     m_MovingUp = true;
 }

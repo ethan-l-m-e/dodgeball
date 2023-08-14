@@ -17,6 +17,7 @@ int main(int, char const**)
     Player player = Player(375, 275);
     
     Ball enemy = Ball(-50, 100);
+    enemy.spawn(player.getPosition());
 
     Clock clock;
     

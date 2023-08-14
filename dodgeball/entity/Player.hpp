@@ -32,6 +32,7 @@ public:
     
     Player(float startX, float startY);
     RectangleShape getShape();
+    Vector2f getPosition();
     
     void moveUp();
     void moveDown();

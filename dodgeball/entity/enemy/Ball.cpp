@@ -25,6 +25,20 @@ CircleShape Ball::getShape() {
     
 }
 
+void Ball::spawn(Vector2f target) {
+    
+    /*
+     Calculate speed in x and y directions to travel toward target.
+     Results m_DirectionX & m_DirectionY to be multiplied with actual distance traveled in update() function.
+    */
+    float distanceX = target.x - m_Position.x;
+    float distanceY = target.y - m_Position.y;
+    float straightLineDistance = sqrtf((distanceX * distanceX) + (distanceY * distanceY));
+    m_DirectionX = distanceX / straightLineDistance;
+    m_DirectionY = distanceY / straightLineDistance;
+    
+}
+
 void Ball::update(Time dt) {
     
     m_Position.x += m_DirectionX * m_Speed * dt.asSeconds();

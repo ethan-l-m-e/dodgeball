@@ -29,7 +29,7 @@ public:
     
     Ball(float startX, float startY);
     CircleShape getShape();
-    
+    void spawn(Vector2f target);
     void update(Time dt);
     
 };
