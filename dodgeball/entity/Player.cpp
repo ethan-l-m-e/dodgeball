@@ -18,11 +18,15 @@ Player::Player(float startX, float startY) {
 }
 
 RectangleShape Player::getShape() {
+    
     return m_Shape;
+    
 }
 
 Vector2f Player::getCenter() {
+    
     return m_Position;
+    
 }
 
 FloatRect Player::getPosition() {

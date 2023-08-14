@@ -30,11 +30,11 @@ public:
     
     Ball(float startX, float startY);
     CircleShape getShape();
+    FloatRect getPosition();
+    bool isActive();
+    void hit();
     void spawn(Vector2f target);
     void update(Time dt);
-    bool isActive();
-    FloatRect getPosition();
-    void hit();
     
 };
 

@@ -42,7 +42,6 @@ public:
     void stopDown();
     void stopLeft();
     void stopRight();
-    
     void update(Time dt);
     
 };

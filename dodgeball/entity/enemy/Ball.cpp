@@ -12,7 +12,6 @@ Ball::Ball(float startX, float startY) {
     
     m_Position.x = startX;
     m_Position.y = startY;
-    
     m_Shape.setRadius(25.0f);
     m_Shape.setPosition(m_Position);
     m_Shape.setFillColor(Color::Red);
@@ -22,6 +21,24 @@ Ball::Ball(float startX, float startY) {
 CircleShape Ball::getShape() {
     
     return m_Shape;
+    
+}
+
+FloatRect Ball::getPosition() {
+    
+    return m_Shape.getGlobalBounds();
+    
+}
+
+bool Ball::isActive() {
+    
+    return m_isActive;
+    
+}
+
+void Ball::hit() {
+    
+    m_Shape.setFillColor(Color::Blue);
     
 }
 
@@ -60,23 +77,5 @@ void Ball::update(Time dt) {
         m_isActive = false;
         
     }
-    
-}
-
-bool Ball::isActive() {
-    
-    return m_isActive;
-    
-}
-
-FloatRect Ball::getPosition() {
-    
-    return m_Shape.getGlobalBounds();
-    
-}
-
-void Ball::hit() {
-    
-    m_Shape.setFillColor(Color::Blue);
     
 }
