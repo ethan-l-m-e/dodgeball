@@ -27,6 +27,10 @@ CircleShape Ball::getShape() {
 
 void Ball::spawn(Vector2f target) {
     
+    m_isActive = true;
+    
+    m_Position.x = -50.0f;
+    m_Position.y = 100.0f;
     /*
      Calculate speed in x and y directions to travel toward target.
      Results m_DirectionX & m_DirectionY to be multiplied with actual distance traveled in update() function.
@@ -43,7 +47,24 @@ void Ball::update(Time dt) {
     
     m_Position.x += m_DirectionX * m_Speed * dt.asSeconds();
     m_Position.y += m_DirectionY * m_Speed * dt.asSeconds();
-    
     m_Shape.setPosition(m_Position);
+    
+    // If ball leaves the screen, deactivate.
+    // TODO: Replace hard-coded values with screen resolution variables.
+    if (m_Position.x > 800 ||
+        m_Position.x < -50 ||
+        m_Position.y > 600 ||
+        m_Position.y < -50)
+    {
+        
+        m_isActive = false;
+        
+    }
+    
+}
+
+bool Ball::isActive() {
+    
+    return m_isActive;
     
 }

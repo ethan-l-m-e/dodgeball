@@ -17,7 +17,6 @@ int main(int, char const**)
     Player player = Player(375, 275);
     
     Ball enemy = Ball(-50, 100);
-    enemy.spawn(player.getPosition());
 
     Clock clock;
     
@@ -83,7 +82,13 @@ int main(int, char const**)
         // Update the scene
         Time dt = clock.restart();
         player.update(dt);
-        enemy.update(dt);
+        
+        if (enemy.isActive()) {
+            enemy.update(dt);
+        } else {
+            // Throw the ball
+            enemy.spawn(player.getPosition());
+        }
 
         // Clear screen
         window.clear();

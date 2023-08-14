@@ -24,6 +24,7 @@ private:
     float m_Speed = 100.0f;
     float m_DirectionX = 1.0f;
     float m_DirectionY = 0.0f;
+    bool m_isActive = false;
     
 public:
     
@@ -31,6 +32,7 @@ public:
     CircleShape getShape();
     void spawn(Vector2f target);
     void update(Time dt);
+    bool isActive();
     
 };
 
