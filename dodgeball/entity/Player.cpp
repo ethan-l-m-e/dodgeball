@@ -21,8 +21,14 @@ RectangleShape Player::getShape() {
     return m_Shape;
 }
 
-Vector2f Player::getPosition() {
+Vector2f Player::getCenter() {
     return m_Position;
+}
+
+FloatRect Player::getPosition() {
+    
+    return m_Shape.getGlobalBounds();
+    
 }
 
 void Player::moveUp() {

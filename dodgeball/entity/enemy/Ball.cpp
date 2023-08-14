@@ -28,7 +28,7 @@ CircleShape Ball::getShape() {
 void Ball::spawn(Vector2f target) {
     
     m_isActive = true;
-    
+    m_Shape.setFillColor(Color::Red);
     m_Position.x = -50.0f;
     m_Position.y = 100.0f;
     /*
@@ -66,5 +66,17 @@ void Ball::update(Time dt) {
 bool Ball::isActive() {
     
     return m_isActive;
+    
+}
+
+FloatRect Ball::getPosition() {
+    
+    return m_Shape.getGlobalBounds();
+    
+}
+
+void Ball::hit() {
+    
+    m_Shape.setFillColor(Color::Blue);
     
 }

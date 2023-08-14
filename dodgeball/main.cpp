@@ -87,7 +87,14 @@ int main(int, char const**)
             enemy.update(dt);
         } else {
             // Throw the ball
-            enemy.spawn(player.getPosition());
+            enemy.spawn(player.getCenter());
+        }
+        
+        // Detect collision
+        if (player.getPosition().intersects(enemy.getPosition())) {
+            
+            enemy.hit();
+            
         }
 
         // Clear screen

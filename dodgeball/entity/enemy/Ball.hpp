@@ -33,6 +33,8 @@ public:
     void spawn(Vector2f target);
     void update(Time dt);
     bool isActive();
+    FloatRect getPosition();
+    void hit();
     
 };
 
