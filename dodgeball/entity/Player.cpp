@@ -67,6 +67,17 @@ void Player::stopRight() {
     m_MovingRight = false;
 }
 
+void Player::reset() {
+    
+    m_MovingUp = false;
+    m_MovingDown = false;
+    m_MovingLeft = false;
+    m_MovingRight = false;
+    m_Position.x = 375;
+    m_Position.y = 275;
+    
+}
+
 void Player::update(Time dt) {
     
     if (m_MovingUp) {

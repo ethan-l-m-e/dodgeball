@@ -7,10 +7,16 @@
 #include "./entity/Player.hpp"
 #include "./entity/enemy/Ball.hpp"
 
+#include <iostream>
+
 using namespace sf;
 
 int main(int, char const**)
 {
+    enum class State { PLAYING, GAME_OVER };
+    
+    State state = State::GAME_OVER;
+    
     // Create the main window
     RenderWindow window(sf::VideoMode(800, 600), "Dodgeball!");
     
@@ -40,6 +46,33 @@ int main(int, char const**)
                 window.close();
             }
             
+            if (event.type == Event::KeyPressed && event.key.code == Keyboard::Return && state == State::GAME_OVER) {
+                
+                state = State::PLAYING;
+                
+                clock.restart();
+                
+                std::cout << "help" << std::endl;
+            }
+            
+        }
+        
+        if (state == State::GAME_OVER) {
+            
+            window.clear();
+            
+            // Draw things here
+            window.draw(player.getShape());
+            window.draw(enemy.getShape());
+            
+            player.reset();
+            
+        }
+        
+        if (state == State::PLAYING) {
+            
+            Event movement;
+            window.pollEvent(movement);
             // Arrow up
             if (event.type == Event::KeyPressed && event.key.code == Keyboard::Up) {
                 player.moveUp();
@@ -80,35 +113,38 @@ int main(int, char const**)
                 player.stopRight();
             }
             
-        }
-        
-        // Update the scene
-        Time dt = clock.restart();
-        player.update(dt);
-        
-        if (enemy.isActive()) {
-            enemy.update(dt);
-        } else {
-            // Throw the ball
-            enemy.spawn(player.getCenter());
-        }
-        
-        // Detect collision
-        if (player.getPosition().intersects(enemy.getPosition())) {
+            // Update the scene
+            Time dt = clock.restart();
+            player.update(dt);
             
-            enemy.hit();
+            if (enemy.isActive()) {
+                enemy.update(dt);
+            } else {
+                // Throw the ball
+                enemy.spawn(player.getCenter());
+            }
             
-        }
+            // Detect collision
+            if (player.getPosition().intersects(enemy.getPosition())) {
+                
+                enemy.hit();
+                
+                // End game
+                state = State::GAME_OVER;
+                
+            }
 
-        // Clear screen
-        window.clear();
-        
-        // Draw things here
-        window.draw(player.getShape());
-        window.draw(enemy.getShape());
-        
+            // Clear screen
+            window.clear();
+            
+            // Draw things here
+            window.draw(player.getShape());
+            window.draw(enemy.getShape());
+            
+        }
         // Update the window
         window.display();
+        
     }
 
     return EXIT_SUCCESS;

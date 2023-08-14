@@ -38,6 +38,8 @@ void Ball::hit() {
     
     m_Shape.setFillColor(Color::Blue);
     
+    m_isActive = false;
+    
 }
 
 void Ball::spawn(Vector2f target) {
