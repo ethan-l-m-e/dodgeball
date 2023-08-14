@@ -17,6 +17,9 @@ int main(int, char const**)
     Player player = Player(375, 275);
     
     Ball enemy = Ball(-50, 100);
+    
+    // Seed the random generator
+    srand((int) time(0));
 
     Clock clock;
     

@@ -7,6 +7,7 @@
 //
 
 #include "Ball.hpp"
+#include <iostream>
 
 Ball::Ball(float startX, float startY) {
     
@@ -46,8 +47,38 @@ void Ball::spawn(Vector2f target) {
     
     m_isActive = true;
     m_Shape.setFillColor(Color::Red);
-    m_Position.x = -50.0f;
-    m_Position.y = 100.0f;
+    
+    // TODO: Replace hard-coded values with variables.
+    int width = 800;
+    int height = 600;
+    float ballLength = 50;
+    
+    // Pick a start position
+    float startX, startY;
+    enum class Side { TOP, BOTTOM, LEFT, RIGHT };
+
+    switch (Side(rand() % 4)) {
+        case Side::TOP:
+            startX = rand() % width;
+            startY = -ballLength;
+            break;
+        case Side::BOTTOM:
+            startX = rand() % width;
+            startY = height;
+            break;
+        case Side::LEFT:
+            startX = -ballLength;
+            startY = rand() % height;
+            break;
+        case Side::RIGHT:
+            startX = width;
+            startY = rand() % height;
+            break;
+    }
+    m_Position.x = startX;
+    m_Position.y = startY;
+    m_Shape.setPosition(m_Position);
+    
     /*
      Calculate speed in x and y directions to travel toward target.
      Results m_DirectionX & m_DirectionY to be multiplied with actual distance traveled in update() function.
