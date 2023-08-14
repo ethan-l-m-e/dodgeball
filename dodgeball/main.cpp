@@ -16,7 +16,7 @@ int main(int, char const**)
     
     Player player = Player(375, 275);
     
-    Ball enemy = Ball(-50, 100);
+    Ball enemy = Ball();
     
     // Seed the random generator
     srand((int) time(0));

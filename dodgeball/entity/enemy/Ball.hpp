@@ -28,7 +28,7 @@ private:
     
 public:
     
-    Ball(float startX, float startY);
+    Ball();
     CircleShape getShape();
     FloatRect getPosition();
     bool isActive();

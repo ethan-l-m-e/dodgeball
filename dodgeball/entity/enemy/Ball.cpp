@@ -9,12 +9,9 @@
 #include "Ball.hpp"
 #include <iostream>
 
-Ball::Ball(float startX, float startY) {
+Ball::Ball() {
     
-    m_Position.x = startX;
-    m_Position.y = startY;
     m_Shape.setRadius(25.0f);
-    m_Shape.setPosition(m_Position);
     m_Shape.setFillColor(Color::Red);
     
 }
