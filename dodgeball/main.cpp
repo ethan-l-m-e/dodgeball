@@ -7,8 +7,6 @@
 #include "./entity/Player.hpp"
 #include "./entity/enemy/Ball.hpp"
 
-#include <iostream>
-
 using namespace sf;
 
 int main(int, char const**)
@@ -51,8 +49,6 @@ int main(int, char const**)
                 state = State::PLAYING;
                 
                 clock.restart();
-                
-                std::cout << "help" << std::endl;
             }
             
         }
