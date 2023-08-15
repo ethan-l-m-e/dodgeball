@@ -8,12 +8,14 @@
 
 #include "Player.hpp"
 
-Player::Player(float startX, float startY) {
+Player::Player(float startX, float startY, Vector2f screen) {
     
     m_Position.x = startX;
     m_Position.y = startY;
     m_Shape.setSize(Vector2f(50, 50));
     m_Shape.setPosition(m_Position);
+    m_Screen.x = screen.x;
+    m_Screen.y = screen.y;
     
 }
 
@@ -67,14 +69,17 @@ void Player::stopRight() {
     m_MovingRight = false;
 }
 
-void Player::reset() {
+void Player::spawn() {
+    
+    // Spawn in screen center
+    m_Position.x = (m_Screen.x / 2.0f) - (m_Shape.getSize().x / 2.0f);
+    m_Position.y = (m_Screen.y / 2.0f) - (m_Shape.getSize().y / 2.0f);
+    m_Shape.setPosition(m_Position);
     
     m_MovingUp = false;
     m_MovingDown = false;
     m_MovingLeft = false;
     m_MovingRight = false;
-    m_Position.x = 375;
-    m_Position.y = 275;
     
 }
 
@@ -101,6 +106,33 @@ void Player::update(Time dt) {
     if (m_MovingRight) {
         
         m_Position.x += m_Speed * dt.asSeconds();
+        
+    }
+    
+    // Prevent movement out of screen
+    float playerLength = m_Shape.getSize().x;
+    
+    if (m_Position.x > m_Screen.x - playerLength) {
+        
+        m_Position.x = m_Screen.x - playerLength;
+        
+    }
+    
+    if (m_Position.x < 0) {
+        
+        m_Position.x = 0;
+        
+    }
+    
+    if (m_Position.y > m_Screen.y - playerLength) {
+        
+        m_Position.y = m_Screen.y - playerLength;
+        
+    }
+    
+    if (m_Position.y < 0) {
+        
+        m_Position.y = 0;
         
     }
     

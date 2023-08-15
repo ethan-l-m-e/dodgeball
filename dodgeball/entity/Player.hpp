@@ -22,6 +22,7 @@ private:
     
     Vector2f m_Position;
     RectangleShape m_Shape;
+    Vector2f m_Screen;
     float m_Speed = 500.0f;
     bool m_MovingUp = false;
     bool m_MovingDown = false;
@@ -30,7 +31,7 @@ private:
     
 public:
     
-    Player(float startX, float startY);
+    Player(float startX, float startY, Vector2f screen);
     RectangleShape getShape();
     Vector2f getCenter();
     FloatRect getPosition();
@@ -42,7 +43,7 @@ public:
     void stopDown();
     void stopLeft();
     void stopRight();
-    void reset();
+    void spawn();
     void update(Time dt);
     
 };

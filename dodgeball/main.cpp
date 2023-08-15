@@ -10,14 +10,21 @@
 
 using namespace sf;
 
+float WINDOW_WIDTH = 800.0f;
+float WINDOW_HEIGHT = 600.0f;
+
 int main(int, char const**)
 {
     enum class State { PLAYING, GAME_OVER };
     
     State state = State::GAME_OVER;
     
+    Vector2f resolution;
+    resolution.x = 800.0f;
+    resolution.y = 600.0f;
+    
     // Create the main window
-    RenderWindow window(sf::VideoMode(800, 600), "Dodgeball!");
+    RenderWindow window(sf::VideoMode(resolution.x, resolution.y), "Dodgeball!");
     
     // Scoring
     int score = 0;
@@ -31,7 +38,7 @@ int main(int, char const**)
     scoreText.setString("Score: 0");
     
     // Game players
-    Player player = Player(375, 275);
+    Player player = Player(375, 275, resolution);
     
     Ball enemy = Ball();
     
@@ -64,6 +71,8 @@ int main(int, char const**)
                 clock.restart();
                 
                 score = 0;
+                
+                player.spawn();
             }
             
             if (state == State::PLAYING) {
@@ -122,8 +131,6 @@ int main(int, char const**)
             // Draw things here
             window.draw(player.getShape());
             window.draw(enemy.getShape());
-            
-            player.reset();
             
         }
         
