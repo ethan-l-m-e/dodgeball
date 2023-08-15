@@ -1,3 +1,4 @@
+#include <sstream>
 #include <SFML/Audio.hpp>
 #include <SFML/Graphics.hpp>
 
@@ -18,6 +19,18 @@ int main(int, char const**)
     // Create the main window
     RenderWindow window(sf::VideoMode(800, 600), "Dodgeball!");
     
+    // Scoring
+    int score = 0;
+    Text scoreText;
+    Font font;
+    font.loadFromFile(resourcePath() + "Gameplay.ttf");
+    scoreText.setFont(font);
+    scoreText.setFillColor(Color::White);
+    scoreText.setPosition(15, 10);
+    scoreText.setCharacterSize(36);
+    scoreText.setString("Score: 0");
+    
+    // Game players
     Player player = Player(375, 275);
     
     Ball enemy = Ball();
@@ -49,6 +62,8 @@ int main(int, char const**)
                 state = State::PLAYING;
                 
                 clock.restart();
+                
+                score = 0;
             }
             
         }
@@ -118,6 +133,8 @@ int main(int, char const**)
             } else {
                 // Throw the ball
                 enemy.spawn(player.getCenter());
+                
+                score++;
             }
             
             // Detect collision
@@ -138,6 +155,15 @@ int main(int, char const**)
             window.draw(enemy.getShape());
             
         }
+        
+        std::stringstream ss;
+        
+        ss << "Score: " << score;
+        
+        scoreText.setString(ss.str());
+        
+        window.draw(scoreText);
+        
         // Update the window
         window.display();
         
