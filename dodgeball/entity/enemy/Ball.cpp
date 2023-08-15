@@ -9,42 +9,43 @@
 #include "Ball.hpp"
 #include <iostream>
 
-Ball::Ball() {
-    
+Ball::Ball()
+{
+    // Set ball properties
     m_Shape.setRadius(25.0f);
     m_Shape.setFillColor(Color::Red);
-    
 }
 
-CircleShape Ball::getShape() {
-    
+CircleShape Ball::getShape()
+{
     return m_Shape;
-    
 }
 
-FloatRect Ball::getPosition() {
-    
+FloatRect Ball::getPosition()
+{
     return m_Shape.getGlobalBounds();
-    
 }
 
-bool Ball::isActive() {
-    
+bool Ball::isActive()
+{
     return m_isActive;
-    
 }
 
-void Ball::hit() {
-    
+void Ball::hit()
+{
+    // Change color on hit
     m_Shape.setFillColor(Color::Blue);
     
+    // Ball relieved of duty
     m_isActive = false;
-    
 }
 
-void Ball::spawn(Vector2f target) {
-    
+void Ball::spawn(Vector2f target)
+{
+    // Use this ball
     m_isActive = true;
+    
+    // Reset color back to red
     m_Shape.setFillColor(Color::Red);
     
     // TODO: Replace hard-coded values with variables.
@@ -56,7 +57,8 @@ void Ball::spawn(Vector2f target) {
     float startX, startY;
     enum class Side { TOP, BOTTOM, LEFT, RIGHT };
 
-    switch (Side(rand() % 4)) {
+    switch (Side(rand() % 4))
+    {
         case Side::TOP:
             startX = rand() % width;
             startY = -ballLength;
@@ -87,11 +89,11 @@ void Ball::spawn(Vector2f target) {
     float straightLineDistance = sqrtf((distanceX * distanceX) + (distanceY * distanceY));
     m_DirectionX = distanceX / straightLineDistance;
     m_DirectionY = distanceY / straightLineDistance;
-    
 }
 
-void Ball::update(Time dt) {
-    
+void Ball::update(Time dt)
+{
+    // Get actual distance travelled in x and y directions
     m_Position.x += m_DirectionX * m_Speed * dt.asSeconds();
     m_Position.y += m_DirectionY * m_Speed * dt.asSeconds();
     m_Shape.setPosition(m_Position);
@@ -103,9 +105,6 @@ void Ball::update(Time dt) {
         m_Position.y > 600 ||
         m_Position.y < -50)
     {
-        
         m_isActive = false;
-        
     }
-    
 }

@@ -8,135 +8,135 @@
 
 #include "Player.hpp"
 
-Player::Player(float startX, float startY, Vector2f screen) {
-    
+Player::Player(float startX, float startY, Vector2f screen)
+{
+    // Place player in given location
     m_Position.x = startX;
     m_Position.y = startY;
-    m_Shape.setSize(Vector2f(50, 50));
     m_Shape.setPosition(m_Position);
+    
+    // How big is the player
+    m_Shape.setSize(Vector2f(50, 50));
+    
+    // Store the screen resolution
     m_Screen.x = screen.x;
     m_Screen.y = screen.y;
-    
 }
 
-RectangleShape Player::getShape() {
-    
+RectangleShape Player::getShape()
+{
     return m_Shape;
-    
 }
 
-Vector2f Player::getCenter() {
-    
+Vector2f Player::getCenter()
+{
     return m_Position;
-    
 }
 
-FloatRect Player::getPosition() {
-    
+FloatRect Player::getPosition()
+{
     return m_Shape.getGlobalBounds();
-    
 }
 
-void Player::moveUp() {
+void Player::moveUp()
+{
     m_MovingUp = true;
 }
 
-void Player::moveDown() {
+void Player::moveDown()
+{
     m_MovingDown = true;
 }
 
-void Player::moveLeft() {
+void Player::moveLeft()
+{
     m_MovingLeft = true;
 }
 
-void Player::moveRight() {
+void Player::moveRight()
+{
     m_MovingRight = true;
 }
 
-void Player::stopUp() {
+void Player::stopUp()
+{
     m_MovingUp = false;
 }
 
-void Player::stopDown() {
+void Player::stopDown()
+{
     m_MovingDown = false;
 }
 
-void Player::stopLeft() {
+void Player::stopLeft()
+{
     m_MovingLeft = false;
 }
 
-void Player::stopRight() {
+void Player::stopRight()
+{
     m_MovingRight = false;
 }
 
-void Player::spawn() {
-    
+void Player::spawn()
+{
     // Spawn in screen center
     m_Position.x = (m_Screen.x / 2.0f) - (m_Shape.getSize().x / 2.0f);
     m_Position.y = (m_Screen.y / 2.0f) - (m_Shape.getSize().y / 2.0f);
     m_Shape.setPosition(m_Position);
     
+    // Start player from a still position
     m_MovingUp = false;
     m_MovingDown = false;
     m_MovingLeft = false;
     m_MovingRight = false;
-    
 }
 
-void Player::update(Time dt) {
-    
-    if (m_MovingUp) {
-        
+void Player::update(Time dt)
+{
+    if (m_MovingUp)
+    {
         m_Position.y -= m_Speed * dt.asSeconds();
-        
     }
     
-    if (m_MovingDown) {
-        
+    if (m_MovingDown)
+    {
         m_Position.y += m_Speed * dt.asSeconds();
-        
     }
     
-    if (m_MovingLeft) {
-        
+    if (m_MovingLeft)
+    {
         m_Position.x -= m_Speed * dt.asSeconds();
-        
     }
     
-    if (m_MovingRight) {
-        
+    if (m_MovingRight)
+    {
         m_Position.x += m_Speed * dt.asSeconds();
-        
     }
     
     // Prevent movement out of screen
     float playerLength = m_Shape.getSize().x;
     
-    if (m_Position.x > m_Screen.x - playerLength) {
-        
+    if (m_Position.x > m_Screen.x - playerLength)
+    {
         m_Position.x = m_Screen.x - playerLength;
-        
     }
     
-    if (m_Position.x < 0) {
-        
+    if (m_Position.x < 0)
+    {
         m_Position.x = 0;
-        
     }
     
-    if (m_Position.y > m_Screen.y - playerLength) {
-        
+    if (m_Position.y > m_Screen.y - playerLength)
+    {
         m_Position.y = m_Screen.y - playerLength;
-        
     }
     
-    if (m_Position.y < 0) {
-        
+    if (m_Position.y < 0)
+    {
         m_Position.y = 0;
-        
     }
     
     // Moves the shape object associated with player
     m_Shape.setPosition(m_Position);
-    
 }
