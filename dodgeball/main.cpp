@@ -66,6 +66,53 @@ int main(int, char const**)
                 score = 0;
             }
             
+            if (state == State::PLAYING) {
+                
+                // Handle player controls when game is playing
+                Event movement;
+                window.pollEvent(movement);
+                // Arrow up
+                if (event.type == Event::KeyPressed && event.key.code == Keyboard::Up) {
+                    player.moveUp();
+                }
+                
+                // Release up
+                if (event.type == Event::KeyReleased && event.key.code == Keyboard::Up) {
+                    player.stopUp();
+                }
+                
+                // Arrow down
+                if (event.type == Event::KeyPressed && event.key.code == Keyboard::Down) {
+                    player.moveDown();
+                }
+                
+                // Release down
+                if (event.type == Event::KeyReleased && event.key.code == Keyboard::Down) {
+                    player.stopDown();
+                }
+                
+                // Arrow left
+                if (event.type == Event::KeyPressed && event.key.code == Keyboard::Left) {
+                    player.moveLeft();
+                }
+                
+                // Release left
+                if (event.type == Event::KeyReleased && event.key.code == Keyboard::Left) {
+                    player.stopLeft();
+                }
+                
+                // Arrow right
+                if (event.type == Event::KeyPressed && event.key.code == Keyboard::Right) {
+                    player.moveRight();
+                }
+                
+                // Release right
+                if (event.type == Event::KeyReleased && event.key.code == Keyboard::Right) {
+                    player.stopRight();
+                }
+                
+            }
+            
         }
         
         if (state == State::GAME_OVER) {
@@ -81,48 +128,6 @@ int main(int, char const**)
         }
         
         if (state == State::PLAYING) {
-            
-            Event movement;
-            window.pollEvent(movement);
-            // Arrow up
-            if (event.type == Event::KeyPressed && event.key.code == Keyboard::Up) {
-                player.moveUp();
-            }
-            
-            // Release up
-            if (event.type == Event::KeyReleased && event.key.code == Keyboard::Up) {
-                player.stopUp();
-            }
-            
-            // Arrow down
-            if (event.type == Event::KeyPressed && event.key.code == Keyboard::Down) {
-                player.moveDown();
-            }
-            
-            // Release down
-            if (event.type == Event::KeyReleased && event.key.code == Keyboard::Down) {
-                player.stopDown();
-            }
-            
-            // Arrow left
-            if (event.type == Event::KeyPressed && event.key.code == Keyboard::Left) {
-                player.moveLeft();
-            }
-            
-            // Release left
-            if (event.type == Event::KeyReleased && event.key.code == Keyboard::Left) {
-                player.stopLeft();
-            }
-            
-            // Arrow right
-            if (event.type == Event::KeyPressed && event.key.code == Keyboard::Right) {
-                player.moveRight();
-            }
-            
-            // Release right
-            if (event.type == Event::KeyReleased && event.key.code == Keyboard::Right) {
-                player.stopRight();
-            }
             
             // Update the scene
             Time dt = clock.restart();
