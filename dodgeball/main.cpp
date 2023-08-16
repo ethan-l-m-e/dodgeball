@@ -144,13 +144,19 @@ int main(int, char const**)
             Time dt = clock.restart();
             player.update(dt);
             
-            if (enemy.isActive()) {
-                enemy.update(dt);
-            } else {
-                // Throw the ball
-                enemy.spawn(player.getCenter());
+            if (!enemy.isActive())
+            {
+                if (enemy.hasMissed())
+                {
+                    score++;
+                }
                 
-                score++;
+                // Re-throw ball
+                enemy.spawn(player.getCenter());
+            }
+            else
+            {
+                enemy.update(dt);
             }
             
             // Detect collision

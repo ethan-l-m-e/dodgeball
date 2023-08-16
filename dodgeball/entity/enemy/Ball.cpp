@@ -31,6 +31,11 @@ bool Ball::isActive()
     return m_isActive;
 }
 
+bool Ball::hasMissed()
+{
+    return m_Missed;
+}
+
 void Ball::hit()
 {
     // Change color on hit
@@ -44,6 +49,9 @@ void Ball::spawn(Vector2f target)
 {
     // Use this ball
     m_isActive = true;
+    
+    // New ball has not missed
+    m_Missed = false;
     
     // Reset color back to red
     m_Shape.setFillColor(Color::Red);
@@ -106,5 +114,6 @@ void Ball::update(Time dt)
         m_Position.y < -50)
     {
         m_isActive = false;
+        m_Missed = true;
     }
 }

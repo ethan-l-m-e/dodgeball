@@ -35,6 +35,9 @@ private:
     // Is ball being used
     bool m_isActive = false;
     
+    // Has ball flown out of screen
+    bool m_Missed = false;
+    
 public:
     
     Ball();
@@ -47,6 +50,9 @@ public:
     
     // Check if ball is being used
     bool isActive();
+    
+    // Used to help count scores
+    bool hasMissed();
     
     // Ball collides with another object
     void hit();
