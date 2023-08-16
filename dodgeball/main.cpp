@@ -64,7 +64,11 @@ int main(int, char const**)
                 window.close();
             }
             
-            if (event.type == Event::KeyPressed && event.key.code == Keyboard::Return && state == State::GAME_OVER) {
+            if (event.type == Event::KeyPressed &&
+                (event.key.code == Keyboard::Up ||
+                 event.key.code == Keyboard::Down ||
+                 event.key.code == Keyboard::Left ||
+                 event.key.code == Keyboard::Right) && state == State::GAME_OVER) {
                 
                 state = State::PLAYING;
                 
