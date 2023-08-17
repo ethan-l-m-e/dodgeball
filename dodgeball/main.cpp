@@ -10,9 +10,6 @@
 
 using namespace sf;
 
-float WINDOW_WIDTH = 800.0f;
-float WINDOW_HEIGHT = 600.0f;
-
 int main(int, char const**)
 {
     enum class State { PLAYING, GAME_OVER };
