@@ -23,6 +23,12 @@ int main(int, char const**)
     resolution.x = 800.0f;
     resolution.y = 600.0f;
     
+    IntRect arena;
+    arena.width = resolution.x;
+    arena.height = resolution.y;
+    arena.left = 0;
+    arena.top = 0;
+    
     // Create the main window
     RenderWindow window(sf::VideoMode(resolution.x, resolution.y), "Dodgeball!");
     
@@ -38,7 +44,8 @@ int main(int, char const**)
     scoreText.setString("Score: 0");
     
     // Game players
-    Player player = Player(375, 275, resolution);
+    Player player;
+    player.spawn(arena);
     
     Ball enemy = Ball();
     
@@ -76,7 +83,7 @@ int main(int, char const**)
                 
                 score = 0;
                 
-                player.spawn();
+                player.spawn(arena);
             }
             
             if (state == State::PLAYING) {

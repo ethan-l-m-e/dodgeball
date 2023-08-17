@@ -27,7 +27,7 @@ private:
     RectangleShape m_Shape;
     
     // Screen resolution
-    Vector2f m_Screen;
+    IntRect m_Arena;
     
     // How fast player moves
     float m_Speed = 500.0f;
@@ -41,7 +41,7 @@ private:
 public:
     
     // Create player within given screen size
-    Player(float startX, float startY, Vector2f screen);
+    Player();
     
     // Get shape object representing player
     RectangleShape getShape();
@@ -65,7 +65,7 @@ public:
     void stopRight();
     
     // Respawning the player
-    void spawn();
+    void spawn(IntRect arena);
     
     // Call once every frame
     void update(Time dt);

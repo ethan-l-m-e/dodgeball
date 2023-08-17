@@ -8,19 +8,10 @@
 
 #include "Player.hpp"
 
-Player::Player(float startX, float startY, Vector2f screen)
+Player::Player()
 {
-    // Place player in given location
-    m_Position.x = startX;
-    m_Position.y = startY;
-    m_Shape.setPosition(m_Position);
-    
     // How big is the player
     m_Shape.setSize(Vector2f(50, 50));
-    
-    // Store the screen resolution
-    m_Screen.x = screen.x;
-    m_Screen.y = screen.y;
 }
 
 RectangleShape Player::getShape()
@@ -78,11 +69,16 @@ void Player::stopRight()
     m_MovingRight = false;
 }
 
-void Player::spawn()
+void Player::spawn(IntRect arena)
 {
+    m_Arena.width = arena.width;
+    m_Arena.height = arena.height;
+    m_Arena.left = arena.left;
+    m_Arena.top = arena.top;
+    
     // Spawn in screen center
-    m_Position.x = (m_Screen.x / 2.0f) - (m_Shape.getSize().x / 2.0f);
-    m_Position.y = (m_Screen.y / 2.0f) - (m_Shape.getSize().y / 2.0f);
+    m_Position.x = (m_Arena.width / 2.0f) - (m_Shape.getSize().x / 2.0f);
+    m_Position.y = (m_Arena.height / 2.0f) - (m_Shape.getSize().y / 2.0f);
     m_Shape.setPosition(m_Position);
     
     // Start player from a still position
@@ -117,24 +113,24 @@ void Player::update(Time dt)
     // Prevent movement out of screen
     float playerLength = m_Shape.getSize().x;
     
-    if (m_Position.x > m_Screen.x - playerLength)
+    if (m_Position.x > m_Arena.width - playerLength)
     {
-        m_Position.x = m_Screen.x - playerLength;
+        m_Position.x = m_Arena.width - playerLength;
     }
     
-    if (m_Position.x < 0)
+    if (m_Position.x < m_Arena.left)
     {
-        m_Position.x = 0;
+        m_Position.x = m_Arena.left;
     }
     
-    if (m_Position.y > m_Screen.y - playerLength)
+    if (m_Position.y > m_Arena.height - playerLength)
     {
-        m_Position.y = m_Screen.y - playerLength;
+        m_Position.y = m_Arena.height - playerLength;
     }
     
-    if (m_Position.y < 0)
+    if (m_Position.y < m_Arena.top)
     {
-        m_Position.y = 0;
+        m_Position.y = m_Arena.top;
     }
     
     // Moves the shape object associated with player
