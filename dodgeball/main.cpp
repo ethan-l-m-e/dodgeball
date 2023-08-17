@@ -44,7 +44,7 @@ int main(int, char const**)
     Player player;
     player.spawn(arena);
     
-    Ball enemy = Ball();
+    Ball enemy;
     
     // Seed the random generator
     srand((int) time(0));
