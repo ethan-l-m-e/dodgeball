@@ -25,6 +25,9 @@ private:
     // Circle representing ball
     CircleShape m_Shape;
     
+    // Arena defining the bounds of screen
+    IntRect m_Arena;
+    
     // How fast ball moves
     float m_Speed = 500.0f;
 
@@ -58,7 +61,7 @@ public:
     void hit();
     
     // Spawning and activating a ball
-    void spawn(Vector2f target);
+    void spawn(IntRect arena, Vector2f target);
     
     // Called every frame
     void update(Time dt);

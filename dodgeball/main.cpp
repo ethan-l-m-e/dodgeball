@@ -156,7 +156,7 @@ int main(int, char const**)
                 }
                 
                 // Re-throw ball
-                enemy.spawn(player.getCenter());
+                enemy.spawn(arena, player.getCenter());
             }
             else
             {

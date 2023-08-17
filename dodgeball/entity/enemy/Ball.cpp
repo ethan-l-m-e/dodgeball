@@ -45,8 +45,14 @@ void Ball::hit()
     m_isActive = false;
 }
 
-void Ball::spawn(Vector2f target)
+void Ball::spawn(IntRect arena, Vector2f target)
 {
+    // Set arena bounds
+    m_Arena.width = arena.width;
+    m_Arena.height = arena.height;
+    m_Arena.left = arena.left;
+    m_Arena.top = arena.left;
+    
     // Use this ball
     m_isActive = true;
     
@@ -56,10 +62,7 @@ void Ball::spawn(Vector2f target)
     // Reset color back to red
     m_Shape.setFillColor(Color::Red);
     
-    // TODO: Replace hard-coded values with variables.
-    int width = 800;
-    int height = 600;
-    float ballLength = 50;
+    float ballLength = m_Shape.getRadius() * 2;
     
     // Pick a start position
     float startX, startY;
@@ -68,20 +71,20 @@ void Ball::spawn(Vector2f target)
     switch (Side(rand() % 4))
     {
         case Side::TOP:
-            startX = rand() % width;
-            startY = -ballLength;
+            startX = rand() % m_Arena.width;
+            startY = m_Arena.top - ballLength;
             break;
         case Side::BOTTOM:
-            startX = rand() % width;
-            startY = height;
+            startX = rand() % m_Arena.width;
+            startY = m_Arena.height;
             break;
         case Side::LEFT:
-            startX = -ballLength;
-            startY = rand() % height;
+            startX = m_Arena.left - ballLength;
+            startY = rand() % m_Arena.height;
             break;
         case Side::RIGHT:
-            startX = width;
-            startY = rand() % height;
+            startX = m_Arena.width;
+            startY = rand() % m_Arena.height;
             break;
     }
     m_Position.x = startX;
@@ -107,11 +110,11 @@ void Ball::update(Time dt)
     m_Shape.setPosition(m_Position);
     
     // If ball leaves the screen, deactivate.
-    // TODO: Replace hard-coded values with screen resolution variables.
-    if (m_Position.x > 800 ||
-        m_Position.x < -50 ||
-        m_Position.y > 600 ||
-        m_Position.y < -50)
+    float ballLength = m_Shape.getRadius() * 2;
+    if (m_Position.x > m_Arena.width ||
+        m_Position.x < m_Arena.left - ballLength ||
+        m_Position.y > m_Arena.height ||
+        m_Position.y < m_Arena.top - ballLength)
     {
         m_isActive = false;
         m_Missed = true;
