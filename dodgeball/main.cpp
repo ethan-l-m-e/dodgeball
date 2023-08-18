@@ -12,14 +12,18 @@ using namespace sf;
 
 int main(int, char const**)
 {
+    // Game states
     enum class State { PLAYING, GAME_OVER };
     
+    // Begin with game over
     State state = State::GAME_OVER;
     
+    // How big is the game window
     Vector2f resolution;
     resolution.x = 800.0f;
     resolution.y = 600.0f;
     
+    // Game shall be played within window
     IntRect arena;
     arena.width = resolution.x;
     arena.height = resolution.y;
@@ -42,13 +46,14 @@ int main(int, char const**)
     
     // Game players
     Player player;
-    player.spawn(arena);
-    
     Ball enemy;
+    
+    player.spawn(arena);
     
     // Seed the random generator
     srand((int) time(0));
 
+    // Time control
     Clock clock;
     
     // Start the game loop
@@ -68,26 +73,28 @@ int main(int, char const**)
                 window.close();
             }
             
+            // Arrow keys pressed: start game
             if (event.type == Event::KeyPressed &&
                 (event.key.code == Keyboard::Up ||
                  event.key.code == Keyboard::Down ||
                  event.key.code == Keyboard::Left ||
                  event.key.code == Keyboard::Right) && state == State::GAME_OVER) {
-                
+                // Switch game state
                 state = State::PLAYING;
                 
+                // Prevent frame jumps
                 clock.restart();
                 
+                // Reset score
                 score = 0;
                 
+                // Respawn the player
                 player.spawn(arena);
             }
             
-            if (state == State::PLAYING) {
-                
-                // Handle player controls when game is playing
-                Event movement;
-                window.pollEvent(movement);
+            // Handle player controls while game is playing
+            if (state == State::PLAYING)
+            {
                 // Arrow up
                 if (event.type == Event::KeyPressed && event.key.code == Keyboard::Up) {
                     player.moveUp();
@@ -128,49 +135,51 @@ int main(int, char const**)
                     player.stopRight();
                 }
                 
-            }
+            } // End player controls
             
-        }
+        } // End event polling
         
-        if (state == State::GAME_OVER) {
-            
+        if (state == State::GAME_OVER)
+        {
+            // Clean before drawing
             window.clear();
             
             // Draw things here
             window.draw(player.getShape());
             window.draw(enemy.getShape());
-            
         }
         
-        if (state == State::PLAYING) {
-            
+        if (state == State::PLAYING)
+        {
             // Update the scene
             Time dt = clock.restart();
             player.update(dt);
             
+            // Check current enemy statuses
             if (!enemy.isActive())
             {
                 if (enemy.hasMissed())
                 {
+                    // Player has successfully dodged
                     score++;
                 }
                 
-                // Re-throw ball
+                // Reset missed enemy
                 enemy.spawn(arena, player.getCenter());
             }
             else
             {
+                // Enemy still active, update position
                 enemy.update(dt);
             }
             
-            // Detect collision
-            if (player.getPosition().intersects(enemy.getPosition())) {
-                
+            // Detect collisions
+            if (player.getPosition().intersects(enemy.getPosition()))
+            {
                 enemy.hit();
                 
                 // End game
                 state = State::GAME_OVER;
-                
             }
 
             // Clear screen
@@ -180,20 +189,20 @@ int main(int, char const**)
             window.draw(player.getShape());
             window.draw(enemy.getShape());
             
-        }
+        } // End playing state updates
         
+        // Update score text
         std::stringstream ss;
-        
         ss << "Score: " << score;
-        
         scoreText.setString(ss.str());
         
+        // Display updated score
         window.draw(scoreText);
         
         // Update the window
         window.display();
         
-    }
+    } // End game loop
 
     return EXIT_SUCCESS;
 }
