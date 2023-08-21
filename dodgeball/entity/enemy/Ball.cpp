@@ -28,7 +28,7 @@ FloatRect Ball::getPosition()
 
 bool Ball::isActive()
 {
-    return m_isActive;
+    return m_Active;
 }
 
 bool Ball::hasMissed()
@@ -42,7 +42,7 @@ void Ball::hit()
     m_Shape.setFillColor(Color::Blue);
     
     // Ball relieved of duty
-    m_isActive = false;
+    m_Active = false;
     
     // Revert to original difficulty
     m_Speed = 500.0f;
@@ -57,7 +57,7 @@ void Ball::spawn(IntRect arena, Vector2f target)
     m_Arena.top = arena.left;
     
     // Use this ball
-    m_isActive = true;
+    m_Active = true;
     
     // New ball has not missed
     m_Missed = false;
@@ -122,7 +122,7 @@ void Ball::update(Time dt)
         m_Position.y > m_Arena.height ||
         m_Position.y < m_Arena.top - ballLength)
     {
-        m_isActive = false;
+        m_Active = false;
         m_Missed = true;
     }
 }

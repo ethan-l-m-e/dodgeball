@@ -36,7 +36,7 @@ private:
     float m_DirectionY = 0.0f;
     
     // Is ball being used
-    bool m_isActive = false;
+    bool m_Active = false;
     
     // Has ball flown out of screen
     bool m_Missed = false;
