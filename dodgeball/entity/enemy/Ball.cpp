@@ -43,6 +43,9 @@ void Ball::hit()
     
     // Ball relieved of duty
     m_isActive = false;
+    
+    // Revert to original difficulty
+    m_Speed = 500.0f;
 }
 
 void Ball::spawn(IntRect arena, Vector2f target)
@@ -58,6 +61,9 @@ void Ball::spawn(IntRect arena, Vector2f target)
     
     // New ball has not missed
     m_Missed = false;
+    
+    // Increase the difficulty
+    m_Speed += 1;
     
     // Reset color back to red
     m_Shape.setFillColor(Color::Red);
