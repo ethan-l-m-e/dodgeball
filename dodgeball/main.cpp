@@ -141,12 +141,7 @@ int main(int, char const**)
         
         if (state == State::GAME_OVER)
         {
-            // Clean before drawing
-            window.clear();
-            
-            // Draw things here
-            window.draw(player.getShape());
-            window.draw(enemy.getShape());
+            // Do nothing for now
         }
         
         if (state == State::PLAYING)
@@ -181,15 +176,15 @@ int main(int, char const**)
                 // End game
                 state = State::GAME_OVER;
             }
-
-            // Clear screen
-            window.clear();
-            
-            // Draw things here
-            window.draw(player.getShape());
-            window.draw(enemy.getShape());
             
         } // End playing state updates
+        
+        // Clear screen
+        window.clear();
+        
+        // Draw things here
+        window.draw(player.getShape());
+        window.draw(enemy.getShape());
         
         // Update score text
         std::stringstream ss;
