@@ -44,6 +44,15 @@ int main(int, char const**)
     scoreText.setCharacterSize(36);
     scoreText.setString("Score: 0");
     
+    int bestScore = 0;
+    Text bestScoreText;
+    bestScoreText.setFont(font);
+    bestScoreText.setFillColor(Color::White);
+    bestScoreText.setCharacterSize(36);
+    bestScoreText.setString("Best: 0");
+    FloatRect textRect = bestScoreText.getGlobalBounds();
+    bestScoreText.setPosition(15, scoreText.getGlobalBounds().height + 10 + 10);
+    
     // Game players
     Player player;
     Ball enemy;
@@ -190,9 +199,17 @@ int main(int, char const**)
         std::stringstream ss;
         ss << "Score: " << score;
         scoreText.setString(ss.str());
+        if (score > bestScore)
+        {
+            bestScore = score;
+            std::stringstream ss;
+            ss << "Best: " << bestScore;
+            bestScoreText.setString(ss.str());
+        }
         
         // Display updated score
         window.draw(scoreText);
+        window.draw(bestScoreText);
         
         // Update the window
         window.display();
