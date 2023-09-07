@@ -10,6 +10,8 @@
 
 using namespace sf;
 
+int NUM_DODGEBALLS = 3;
+
 int main(int, char const**)
 {
     // Game states
@@ -55,8 +57,8 @@ int main(int, char const**)
     
     // Game players
     Player player;
-    Ball enemy;
-    
+    Ball enemies[NUM_DODGEBALLS];
+        
     player.spawn(arena);
     
     // Seed the random generator
@@ -159,32 +161,36 @@ int main(int, char const**)
             Time dt = clock.restart();
             player.update(dt);
             
-            // Check current enemy statuses
-            if (!enemy.isActive())
+            for (int i = 0; i < NUM_DODGEBALLS; i++)
             {
-                if (enemy.hasMissed())
+                // Check current enemy statuses
+                if (!enemies[i].isActive())
                 {
-                    // Player has successfully dodged
-                    score++;
+                    if (enemies[i].hasMissed())
+                    {
+                        // Player has successfully dodged
+                        score++;
+                    }
+                    
+                    // Reset missed enemy
+                    enemies[i].spawn(arena, player.getCenter());
+                }
+                else
+                {
+                    // Enemy still active, update position
+                    enemies[i].update(dt);
                 }
                 
-                // Reset missed enemy
-                enemy.spawn(arena, player.getCenter());
-            }
-            else
-            {
-                // Enemy still active, update position
-                enemy.update(dt);
+                // Detect collisions
+                if (player.getPosition().intersects(enemies[i].getPosition()))
+                {
+                    enemies[i].hit();
+                    
+                    // End game
+                    state = State::GAME_OVER;
+                }
             }
             
-            // Detect collisions
-            if (player.getPosition().intersects(enemy.getPosition()))
-            {
-                enemy.hit();
-                
-                // End game
-                state = State::GAME_OVER;
-            }
             
         } // End playing state updates
         
@@ -193,7 +199,10 @@ int main(int, char const**)
         
         // Draw things here
         window.draw(player.getShape());
-        window.draw(enemy.getShape());
+        for (int i = 0; i < NUM_DODGEBALLS; i++)
+        {
+            window.draw(enemies[i].getShape());
+        }
         
         // Update score text
         std::stringstream ss;
