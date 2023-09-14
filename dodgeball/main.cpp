@@ -85,15 +85,7 @@ int main(int, char const**)
             }
             
             // Arrow keys pressed: start game
-            if (event.type == Event::KeyPressed &&
-                (event.key.code == Keyboard::Up ||
-                 event.key.code == Keyboard::Down ||
-                 event.key.code == Keyboard::Left ||
-                 event.key.code == Keyboard::Right ||
-                 event.key.code == Keyboard::W ||
-                 event.key.code == Keyboard::A ||
-                 event.key.code == Keyboard::S ||
-                 event.key.code == Keyboard::D) && state == State::GAME_OVER) {
+            if (event.type == Event::KeyPressed && event.key.code == Keyboard::Return && state == State::GAME_OVER) {
                 // Switch game state
                 state = State::PLAYING;
                 
