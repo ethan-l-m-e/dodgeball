@@ -152,7 +152,12 @@ int main(int, char const**)
         
         if (state == State::GAME_OVER)
         {
-            // Do nothing for now
+            // Stop all other balls
+            for (int i = 0; i < NUM_DODGEBALLS; i++)
+            {
+                enemies[i].deactivate();
+            }
+            
         }
         
         if (state == State::PLAYING)

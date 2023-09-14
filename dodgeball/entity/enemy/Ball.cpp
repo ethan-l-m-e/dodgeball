@@ -48,6 +48,11 @@ void Ball::hit()
     m_Speed = 500.0f;
 }
 
+void Ball::deactivate()
+{
+    m_Active = false;
+}
+
 void Ball::spawn(IntRect arena, Vector2f target)
 {
     // Set arena bounds

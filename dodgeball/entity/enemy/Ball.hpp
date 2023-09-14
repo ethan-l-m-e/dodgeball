@@ -60,6 +60,9 @@ public:
     // Ball collides with another object
     void hit();
     
+    // Deactivate when game state change
+    void deactivate();
+    
     // Spawning and activating a ball
     void spawn(IntRect arena, Vector2f target);
     
