@@ -25,6 +25,12 @@ private:
     // Circle representing ball
     CircleShape m_Shape;
     
+    // Ball sprite
+    Sprite m_Sprite;
+    
+    // Ball texture
+    Texture m_Texture;
+    
     // Arena defining the bounds of screen
     IntRect m_Arena;
     
@@ -50,6 +56,9 @@ public:
     
     // Get shape object representing ball
     CircleShape getShape();
+    
+    // Get sprite object representing ball
+    Sprite getSprite();
     
     // Where is the ball
     FloatRect getPosition();

@@ -218,7 +218,7 @@ int main(int, char const**)
         window.draw(player.getShape());
         for (int i = 0; i < numOfActiveDodgeballs; i++)
         {
-            window.draw(enemies[i].getShape());
+            window.draw(enemies[i].getSprite());
         }
         
         // Update score text

@@ -8,16 +8,24 @@
 
 #include "Ball.hpp"
 #include <iostream>
+#include "ResourcePath.hpp"
 
 Ball::Ball()
 {
     // Set ball properties
     m_Shape.setFillColor(Color::Red);
+    m_Texture.loadFromFile(resourcePath() + "dodgeball.png");
+    m_Sprite.setTexture(m_Texture);
 }
 
 CircleShape Ball::getShape()
 {
     return m_Shape;
+}
+
+Sprite Ball::getSprite()
+{
+    return m_Sprite;
 }
 
 FloatRect Ball::getPosition()
@@ -78,6 +86,7 @@ void Ball::setInitialRandomisedPosition(IntRect arena)
     m_Position.x = startX;
     m_Position.y = startY;
     m_Shape.setPosition(m_Position);
+    m_Sprite.setPosition(m_Position);
 }
 
 void Ball::hit()
@@ -102,6 +111,7 @@ void Ball::spawn(IntRect arena, Vector2f target)
     
     // Choose a size
     m_Shape.setRadius(10.0f + rand() % 40);
+    m_Sprite.setScale(m_Shape.getRadius() / 10, m_Shape.getRadius() / 10);
     
     // Increase the difficulty
     m_Speed += 1;
@@ -139,6 +149,7 @@ void Ball::update(Time dt)
     
     // Set the new position
     m_Shape.setPosition(m_Position);
+    m_Sprite.setPosition(m_Position);
     
     // If ball leaves the screen, deactivate
     float ballLength = m_Shape.getRadius() * 2;
