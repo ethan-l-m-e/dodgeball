@@ -89,7 +89,11 @@ int main(int, char const**)
                 (event.key.code == Keyboard::Up ||
                  event.key.code == Keyboard::Down ||
                  event.key.code == Keyboard::Left ||
-                 event.key.code == Keyboard::Right) && state == State::GAME_OVER) {
+                 event.key.code == Keyboard::Right ||
+                 event.key.code == Keyboard::W ||
+                 event.key.code == Keyboard::A ||
+                 event.key.code == Keyboard::S ||
+                 event.key.code == Keyboard::D) && state == State::GAME_OVER) {
                 // Switch game state
                 state = State::PLAYING;
                 
@@ -107,42 +111,42 @@ int main(int, char const**)
             if (state == State::PLAYING)
             {
                 // Arrow up
-                if (event.type == Event::KeyPressed && event.key.code == Keyboard::Up) {
+                if (event.type == Event::KeyPressed && (event.key.code == Keyboard::Up || event.key.code == Keyboard::W)) {
                     player.moveUp();
                 }
                 
                 // Release up
-                if (event.type == Event::KeyReleased && event.key.code == Keyboard::Up) {
+                if (event.type == Event::KeyReleased && (event.key.code == Keyboard::Up || event.key.code == Keyboard::W)) {
                     player.stopUp();
                 }
                 
                 // Arrow down
-                if (event.type == Event::KeyPressed && event.key.code == Keyboard::Down) {
+                if (event.type == Event::KeyPressed && (event.key.code == Keyboard::Down || event.key.code == Keyboard::S)) {
                     player.moveDown();
                 }
                 
                 // Release down
-                if (event.type == Event::KeyReleased && event.key.code == Keyboard::Down) {
+                if (event.type == Event::KeyReleased && (event.key.code == Keyboard::Down || event.key.code == Keyboard::S)) {
                     player.stopDown();
                 }
                 
                 // Arrow left
-                if (event.type == Event::KeyPressed && event.key.code == Keyboard::Left) {
+                if (event.type == Event::KeyPressed && (event.key.code == Keyboard::Left || event.key.code == Keyboard::A)) {
                     player.moveLeft();
                 }
                 
                 // Release left
-                if (event.type == Event::KeyReleased && event.key.code == Keyboard::Left) {
+                if (event.type == Event::KeyReleased && (event.key.code == Keyboard::Left || event.key.code == Keyboard::A)) {
                     player.stopLeft();
                 }
                 
                 // Arrow right
-                if (event.type == Event::KeyPressed && event.key.code == Keyboard::Right) {
+                if (event.type == Event::KeyPressed && (event.key.code == Keyboard::Right || event.key.code == Keyboard::D)) {
                     player.moveRight();
                 }
                 
                 // Release right
-                if (event.type == Event::KeyReleased && event.key.code == Keyboard::Right) {
+                if (event.type == Event::KeyReleased && (event.key.code == Keyboard::Right || event.key.code == Keyboard::D)) {
                     player.stopRight();
                 }
                 
