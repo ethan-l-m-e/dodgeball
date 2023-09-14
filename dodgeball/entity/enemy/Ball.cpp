@@ -7,7 +7,6 @@
 //
 
 #include "Ball.hpp"
-#include <iostream>
 #include "ResourcePath.hpp"
 
 Ball::Ball()
