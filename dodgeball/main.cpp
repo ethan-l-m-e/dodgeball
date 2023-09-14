@@ -10,7 +10,7 @@
 
 using namespace sf;
 
-int NUM_DODGEBALLS = 3;
+int MAX_NUM_DODGEBALLS = 10;
 
 int main(int, char const**)
 {
@@ -57,7 +57,8 @@ int main(int, char const**)
     
     // Game players
     Player player;
-    Ball enemies[NUM_DODGEBALLS];
+    Ball enemies[MAX_NUM_DODGEBALLS];
+    int numOfActiveDodgeballs = 1;
         
     player.spawn(arena);
     
@@ -66,6 +67,7 @@ int main(int, char const**)
 
     // Time control
     Clock clock;
+    float gameTimePassed;
     
     // Start the game loop
     while (window.isOpen())
@@ -94,6 +96,12 @@ int main(int, char const**)
                 
                 // Reset score
                 score = 0;
+                
+                // Reset dodgeballs
+                numOfActiveDodgeballs = 1;
+                
+                // Reset time
+                gameTimePassed = 0.0f;
                 
                 // Respawn the player
                 player.spawn(arena);
@@ -149,7 +157,7 @@ int main(int, char const**)
         if (state == State::GAME_OVER)
         {
             // Stop all other balls
-            for (int i = 0; i < NUM_DODGEBALLS; i++)
+            for (int i = 0; i < MAX_NUM_DODGEBALLS; i++)
             {
                 enemies[i].deactivate();
             }
@@ -160,9 +168,17 @@ int main(int, char const**)
         {
             // Update the scene
             Time dt = clock.restart();
+            gameTimePassed += dt.asSeconds();
+            
+            if (gameTimePassed > 10 && numOfActiveDodgeballs < MAX_NUM_DODGEBALLS)
+            {
+                numOfActiveDodgeballs++;
+                gameTimePassed = 0.0f;
+            }
+            
             player.update(dt);
             
-            for (int i = 0; i < NUM_DODGEBALLS; i++)
+            for (int i = 0; i < numOfActiveDodgeballs; i++)
             {
                 // Check current enemy statuses
                 if (!enemies[i].isActive())
@@ -200,7 +216,7 @@ int main(int, char const**)
         
         // Draw things here
         window.draw(player.getShape());
-        for (int i = 0; i < NUM_DODGEBALLS; i++)
+        for (int i = 0; i < numOfActiveDodgeballs; i++)
         {
             window.draw(enemies[i].getShape());
         }
