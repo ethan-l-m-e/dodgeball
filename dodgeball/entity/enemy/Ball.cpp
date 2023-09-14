@@ -12,7 +12,6 @@
 Ball::Ball()
 {
     // Set ball properties
-    m_Shape.setRadius(25.0f);
     m_Shape.setFillColor(Color::Red);
 }
 
@@ -66,6 +65,9 @@ void Ball::spawn(IntRect arena, Vector2f target)
     
     // New ball has not missed
     m_Missed = false;
+    
+    // Choose a size
+    m_Shape.setRadius(10.0f + rand() % 40);
     
     // Increase the difficulty
     m_Speed += 1;
