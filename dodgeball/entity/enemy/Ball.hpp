@@ -31,7 +31,7 @@ private:
     // How fast ball moves
     float m_Speed = 500.0f;
 
-    // Ratio of x or y direction vs horizontal distance travelled
+    // Ratio of x or y direction vs straight-line-distance travelled
     float m_DirectionX = 1.0f;
     float m_DirectionY = 0.0f;
     
@@ -40,6 +40,9 @@ private:
     
     // Has ball flown out of screen
     bool m_Missed = false;
+    
+    // Random position just out of screen
+    void setInitialRandomisedPosition(IntRect arena);
     
 public:
     
