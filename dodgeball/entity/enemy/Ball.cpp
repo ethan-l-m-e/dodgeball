@@ -15,6 +15,7 @@ Ball::Ball()
     m_Shape.setFillColor(Color::Red);
     m_Texture.loadFromFile(resourcePath() + "dodgeball.png");
     m_Sprite.setTexture(m_Texture);
+    m_Sprite.setColor(Color::Red);
 }
 
 CircleShape Ball::getShape()
