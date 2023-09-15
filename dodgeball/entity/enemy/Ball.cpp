@@ -92,6 +92,7 @@ void Ball::hit()
 {
     // Change color on hit
     m_Shape.setFillColor(Color::Blue);
+    m_Sprite.setColor(Color::Blue);
     
     // Ball relieved of duty
     m_Active = false;
@@ -117,6 +118,7 @@ void Ball::spawn(IntRect arena, Vector2f target)
     
     // Reset color back to red
     m_Shape.setFillColor(Color::Red);
+    m_Sprite.setColor(Color::Red);
     
     // Pick a start position after setting above
     setInitialRandomisedPosition(arena);
