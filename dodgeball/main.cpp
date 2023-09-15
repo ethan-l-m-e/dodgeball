@@ -189,6 +189,18 @@ int main(int, char const**)
                         score++;
                     }
                     
+                    // Update score text
+                    std::stringstream ss;
+                    ss << "Score: " << score;
+                    scoreText.setString(ss.str());
+                    if (score > bestScore)
+                    {
+                        bestScore = score;
+                        std::stringstream ss;
+                        ss << "Best: " << bestScore;
+                        bestScoreText.setString(ss.str());
+                    }
+                    
                     // Reset missed enemy
                     enemies[i].spawn(arena, player.getCenter());
                 }
@@ -219,18 +231,6 @@ int main(int, char const**)
         for (int i = 0; i < numOfActiveDodgeballs; i++)
         {
             window.draw(enemies[i].getSprite());
-        }
-        
-        // Update score text
-        std::stringstream ss;
-        ss << "Score: " << score;
-        scoreText.setString(ss.str());
-        if (score > bestScore)
-        {
-            bestScore = score;
-            std::stringstream ss;
-            ss << "Best: " << bestScore;
-            bestScoreText.setString(ss.str());
         }
         
         // Display updated score
