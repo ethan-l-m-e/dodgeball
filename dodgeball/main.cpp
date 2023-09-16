@@ -52,7 +52,6 @@ int main(int, char const**)
     bestScoreText.setFillColor(Color::White);
     bestScoreText.setCharacterSize(36);
     bestScoreText.setString("Best: 0");
-    FloatRect textRect = bestScoreText.getGlobalBounds();
     bestScoreText.setPosition(15, scoreText.getGlobalBounds().height + 10 + 10);
     
     // Game stats
