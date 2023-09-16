@@ -67,7 +67,7 @@ int main(int, char const**)
 
     // Time control
     Clock clock;
-    float gameTimePassed;
+    float timeSinceLastDifficultyIncrease;
     
     // Start the game loop
     while (window.isOpen())
@@ -101,7 +101,7 @@ int main(int, char const**)
                 numOfActiveDodgeballs = 1;
                 
                 // Reset time
-                gameTimePassed = 0.0f;
+                timeSinceLastDifficultyIncrease = 0.0f;
                 
                 // Respawn the player
                 player.spawn(arena);
@@ -168,12 +168,13 @@ int main(int, char const**)
         {
             // Update the scene
             Time dt = clock.restart();
-            gameTimePassed += dt.asSeconds();
+            timeSinceLastDifficultyIncrease += dt.asSeconds();
             
-            if (gameTimePassed > 15 && numOfActiveDodgeballs < MAX_NUM_DODGEBALLS)
+            // Increase dodgeball number every 15 seconds
+            if (timeSinceLastDifficultyIncrease > 15 && numOfActiveDodgeballs < MAX_NUM_DODGEBALLS)
             {
                 numOfActiveDodgeballs++;
-                gameTimePassed = 0.0f;
+                timeSinceLastDifficultyIncrease = 0.0f;
             }
             
             player.update(dt);
@@ -219,7 +220,6 @@ int main(int, char const**)
                     state = State::GAME_OVER;
                 }
             }
-            
             
         } // End playing state updates
         
