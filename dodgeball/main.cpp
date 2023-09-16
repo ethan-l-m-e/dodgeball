@@ -54,11 +54,15 @@ int main(int, char const**)
     bestScoreText.setString("Best: 0");
     bestScoreText.setPosition(15, scoreText.getGlobalBounds().height + 10 + 10);
     
-    // Game stats
+    // Game over stats
     Text timePlayedText;
     timePlayedText.setFont(font);
     timePlayedText.setFillColor(Color::White);
     timePlayedText.setCharacterSize(36);
+    
+    RectangleShape gameOverBackground;
+    gameOverBackground.setSize(resolution);
+    gameOverBackground.setFillColor(Color(0, 0, 0, 128));
     
     // Game players
     Player player;
@@ -249,16 +253,19 @@ int main(int, char const**)
             window.draw(enemies[i].getSprite());
         }
         
-        // Display updated score
-        window.draw(scoreText);
-        window.draw(bestScoreText);
-        
         // End of game stats
         if (state == State::GAME_OVER)
         {
+            // Blur out rest of the game
+            window.draw(gameOverBackground);
+            
             window.draw(timePlayedText);
         }
-        
+
+        // Display updated score
+        window.draw(scoreText);
+        window.draw(bestScoreText);
+                
         // Update the window
         window.display();
         
