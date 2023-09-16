@@ -55,6 +55,12 @@ int main(int, char const**)
     FloatRect textRect = bestScoreText.getGlobalBounds();
     bestScoreText.setPosition(15, scoreText.getGlobalBounds().height + 10 + 10);
     
+    // Game stats
+    Text timePlayedText;
+    timePlayedText.setFont(font);
+    timePlayedText.setFillColor(Color::White);
+    timePlayedText.setCharacterSize(36);
+    
     // Game players
     Player player;
     Ball enemies[MAX_NUM_DODGEBALLS];
@@ -68,6 +74,7 @@ int main(int, char const**)
     // Time control
     Clock clock;
     float timeSinceLastDifficultyIncrease;
+    float timePlayed;
     
     // Start the game loop
     while (window.isOpen())
@@ -101,6 +108,7 @@ int main(int, char const**)
                 numOfActiveDodgeballs = 1;
                 
                 // Reset time
+                timePlayed = 0.0f;
                 timeSinceLastDifficultyIncrease = 0.0f;
                 
                 // Respawn the player
@@ -168,6 +176,7 @@ int main(int, char const**)
         {
             // Update the scene
             Time dt = clock.restart();
+            timePlayed += dt.asSeconds();
             timeSinceLastDifficultyIncrease += dt.asSeconds();
             
             // Increase dodgeball number every 15 seconds
@@ -218,6 +227,14 @@ int main(int, char const**)
                     
                     // End game
                     state = State::GAME_OVER;
+                    
+                    // Update game time played
+                    std::stringstream ss;
+                    ss << "Time Survived: " << roundf(timePlayed * 100) / 100 << "s";
+                    timePlayedText.setString(ss.str());
+                    FloatRect timePlayedRect = timePlayedText.getGlobalBounds();
+                    timePlayedText.setOrigin(timePlayedRect.width / 2.0f, 0.0f);
+                    timePlayedText.setPosition(resolution.x / 2, 200);
                 }
             }
             
@@ -236,6 +253,12 @@ int main(int, char const**)
         // Display updated score
         window.draw(scoreText);
         window.draw(bestScoreText);
+        
+        // End of game stats
+        if (state == State::GAME_OVER)
+        {
+            window.draw(timePlayedText);
+        }
         
         // Update the window
         window.display();
