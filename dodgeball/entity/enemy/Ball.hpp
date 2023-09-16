@@ -35,7 +35,7 @@ private:
     IntRect m_Arena;
     
     // How fast ball moves
-    float m_Speed = 500.0f;
+    float m_Speed = 400.0f;
 
     // Ratio of x or y direction vs straight-line-distance travelled
     float m_DirectionX = 1.0f;

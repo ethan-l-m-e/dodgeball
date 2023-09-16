@@ -99,7 +99,7 @@ void Ball::hit()
     m_Active = false;
     
     // Revert to original difficulty
-    m_Speed = 500.0f;
+    m_Speed = 400.0f;
 }
 
 void Ball::spawn(IntRect arena, Vector2f target)

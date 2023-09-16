@@ -170,7 +170,7 @@ int main(int, char const**)
             Time dt = clock.restart();
             gameTimePassed += dt.asSeconds();
             
-            if (gameTimePassed > 10 && numOfActiveDodgeballs < MAX_NUM_DODGEBALLS)
+            if (gameTimePassed > 15 && numOfActiveDodgeballs < MAX_NUM_DODGEBALLS)
             {
                 numOfActiveDodgeballs++;
                 gameTimePassed = 0.0f;
