@@ -206,11 +206,15 @@ int main(int, char const**)
             for (int i = 0; i < numOfActiveDodgeballs; i++)
             {
                 // Check current enemy statuses
-                if (!enemies[i].isActive())
+                if (enemies[i].isActive())
                 {
+                    enemies[i].update(dt);
+                }
+                else
+                {
+                    // Player has successfully dodged
                     if (enemies[i].hasMissed())
                     {
-                        // Player has successfully dodged
                         score++;
                     }
                     
@@ -226,14 +230,10 @@ int main(int, char const**)
                         bestScoreText.setString(ss.str());
                     }
                     
-                    // Reset missed enemy
+                    // Spawn inactive enemy
                     enemies[i].spawn(arena, player.getCenter());
-                }
-                else
-                {
-                    // Enemy still active, update position
-                    enemies[i].update(dt);
-                }
+                    
+                } // End enemy update
                 
                 // Detect collisions
                 if (player.getPosition().intersects(enemies[i].getPosition()))
