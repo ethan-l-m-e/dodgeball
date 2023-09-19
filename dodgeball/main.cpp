@@ -38,9 +38,9 @@ int main(int, char const**)
     // Scoring
     int score = 0;
     Text scoreText;
-    Font font;
-    font.loadFromFile(resourcePath() + "Gameplay.ttf");
-    scoreText.setFont(font);
+    Font scoreFont;
+    scoreFont.loadFromFile(resourcePath() + "Gameplay.ttf");
+    scoreText.setFont(scoreFont);
     scoreText.setFillColor(Color::White);
     scoreText.setPosition(15, 10);
     scoreText.setCharacterSize(36);
@@ -48,7 +48,7 @@ int main(int, char const**)
     
     int bestScore = 0;
     Text bestScoreText;
-    bestScoreText.setFont(font);
+    bestScoreText.setFont(scoreFont);
     bestScoreText.setFillColor(Color::White);
     bestScoreText.setCharacterSize(36);
     bestScoreText.setString("Best: 0");
