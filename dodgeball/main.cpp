@@ -39,7 +39,7 @@ int main(int, char const**)
     int score = 0;
     Text scoreText;
     Font scoreFont;
-    scoreFont.loadFromFile(resourcePath() + "Gameplay.ttf");
+    scoreFont.loadFromFile(resourcePath() + "gameplay.ttf");
     scoreText.setFont(scoreFont);
     scoreText.setFillColor(Color::White);
     scoreText.setPosition(15, 10);
