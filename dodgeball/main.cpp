@@ -55,14 +55,26 @@ int main(int, char const**)
     bestScoreText.setPosition(15, scoreText.getGlobalBounds().height + 10 + 10);
     
     // Game over stats
+    Font gameOverFont;
+    gameOverFont.loadFromFile(resourcePath() + "vcr-osd-mono.ttf");
+    
     Text timePlayedText;
-    timePlayedText.setFont(font);
+    timePlayedText.setFont(gameOverFont);
     timePlayedText.setFillColor(Color::White);
     timePlayedText.setCharacterSize(36);
     
     RectangleShape gameOverBackground;
     gameOverBackground.setSize(resolution);
     gameOverBackground.setFillColor(Color(0, 0, 0, 128));
+    
+    Text gameOverText;
+    gameOverText.setFont(gameOverFont);
+    gameOverText.setFillColor(Color::White);
+    gameOverText.setCharacterSize(36);
+    gameOverText.setString("Press Enter to start");
+    FloatRect gameOverRect = gameOverText.getGlobalBounds();
+    gameOverText.setOrigin(gameOverRect.width / 2.0f, 0.0f);
+    gameOverText.setPosition(resolution.x / 2, 350);
     
     // Game players
     Player player;
@@ -235,6 +247,8 @@ int main(int, char const**)
                     std::stringstream ss;
                     ss << "Time Survived: " << roundf(timePlayed * 100) / 100 << "s";
                     timePlayedText.setString(ss.str());
+                    
+                    // Position game stats
                     FloatRect timePlayedRect = timePlayedText.getGlobalBounds();
                     timePlayedText.setOrigin(timePlayedRect.width / 2.0f, 0.0f);
                     timePlayedText.setPosition(resolution.x / 2, 200);
@@ -259,7 +273,9 @@ int main(int, char const**)
             // Blur out rest of the game
             window.draw(gameOverBackground);
             
+            // Draw text items
             window.draw(timePlayedText);
+            window.draw(gameOverText);
         }
 
         // Display updated score
