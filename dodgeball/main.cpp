@@ -108,7 +108,7 @@ int main(int, char const**)
                 window.close();
             }
             
-            // Arrow keys pressed: start game
+            // Enter pressed: start game
             if (event.type == Event::KeyPressed && event.key.code == Keyboard::Return && state == State::GAME_OVER) {
                 // Switch game state
                 state = State::PLAYING;
