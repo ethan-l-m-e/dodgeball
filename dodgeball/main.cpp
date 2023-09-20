@@ -297,7 +297,7 @@ int main(int, char const**)
             // Blur out rest of the game
             window.draw(gameOverBackground);
             
-            // Draw text items
+            // Draw text stats
             window.draw(timePlayedText);
             window.draw(gameOverText);
             
@@ -305,7 +305,7 @@ int main(int, char const**)
             window.draw(spriteWasd);
         }
 
-        // Display updated score
+        // Always display updated score
         window.draw(scoreText);
         window.draw(bestScoreText);
                 
