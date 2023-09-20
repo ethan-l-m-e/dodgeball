@@ -94,6 +94,12 @@ int main(int, char const**)
     // Start the game loop
     while (window.isOpen())
     {
+        /*
+         *******************
+         Handle player input
+         *******************
+         */
+        
         // Process events, keypresses, etc.
         Event event;
         while (window.pollEvent(event))
@@ -177,6 +183,12 @@ int main(int, char const**)
             
         } // End event polling
         
+        /*
+         *********************
+         Update the game scene
+         *********************
+         */
+        
         if (state == State::GAME_OVER)
         {
             // Stop all other balls
@@ -256,6 +268,12 @@ int main(int, char const**)
             }
             
         } // End playing state updates
+        
+        /*
+         **************
+         Draw the scene
+         **************
+         */
         
         // Clear screen
         window.clear();
