@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		E63F853D2AB36EEB00B3E7F5 /* dodgeball.png in Resources */ = {isa = PBXBuildFile; fileRef = E63F853C2AB36EEB00B3E7F5 /* dodgeball.png */; };
 		E63F85412AB9798E00B3E7F5 /* vcr-osd-mono.ttf in Resources */ = {isa = PBXBuildFile; fileRef = E63F85402AB9798E00B3E7F5 /* vcr-osd-mono.ttf */; };
+		E63F85472ABAAC3900B3E7F5 /* controls.png in Resources */ = {isa = PBXBuildFile; fileRef = E63F85462ABAAC3900B3E7F5 /* controls.png */; };
 		E6B4FBA92A8536B600FAC01B /* Player.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E6B4FBA72A8536B600FAC01B /* Player.cpp */; };
 		E6B4FBAD2A86D40100FAC01B /* Ball.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E6B4FBAB2A86D40100FAC01B /* Ball.cpp */; };
 		E6B4FBB42A8B65A800FAC01B /* gameplay.ttf in Resources */ = {isa = PBXBuildFile; fileRef = E6B4FBB32A8B65A800FAC01B /* gameplay.ttf */; };
@@ -19,6 +20,7 @@
 /* Begin PBXFileReference section */
 		E63F853C2AB36EEB00B3E7F5 /* dodgeball.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = dodgeball.png; sourceTree = "<group>"; };
 		E63F85402AB9798E00B3E7F5 /* vcr-osd-mono.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "vcr-osd-mono.ttf"; sourceTree = "<group>"; };
+		E63F85462ABAAC3900B3E7F5 /* controls.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = controls.png; sourceTree = "<group>"; };
 		E69B62932A84CA5300FDB9CE /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		E6B4FBA72A8536B600FAC01B /* Player.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Player.cpp; sourceTree = "<group>"; };
 		E6B4FBA82A8536B600FAC01B /* Player.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Player.hpp; sourceTree = "<group>"; };
@@ -46,6 +48,7 @@
 		E63F853B2AB36EC000B3E7F5 /* graphics */ = {
 			isa = PBXGroup;
 			children = (
+				E63F85462ABAAC3900B3E7F5 /* controls.png */,
 				E63F853C2AB36EEB00B3E7F5 /* dodgeball.png */,
 			);
 			path = graphics;
@@ -180,6 +183,7 @@
 				E63F853D2AB36EEB00B3E7F5 /* dodgeball.png in Resources */,
 				E6B4FBB42A8B65A800FAC01B /* gameplay.ttf in Resources */,
 				E63F85412AB9798E00B3E7F5 /* vcr-osd-mono.ttf in Resources */,
+				E63F85472ABAAC3900B3E7F5 /* controls.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

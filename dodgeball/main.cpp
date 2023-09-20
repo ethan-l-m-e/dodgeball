@@ -76,6 +76,12 @@ int main(int, char const**)
     gameOverText.setOrigin(gameOverRect.width / 2.0f, 0.0f);
     gameOverText.setPosition(resolution.x / 2, 350);
     
+    // Game directions
+    Texture textureWasd;
+    textureWasd.loadFromFile(resourcePath() + "controls.png");
+    Sprite spriteWasd;
+    spriteWasd.setTexture(textureWasd);
+    
     // Game players
     Player player;
     Ball enemies[MAX_NUM_DODGEBALLS];
@@ -294,6 +300,9 @@ int main(int, char const**)
             // Draw text items
             window.draw(timePlayedText);
             window.draw(gameOverText);
+            
+            // Draw instructions
+            window.draw(spriteWasd);
         }
 
         // Display updated score
