@@ -15,7 +15,7 @@ int MAX_NUM_DODGEBALLS = 10;
 int main(int, char const**)
 {
     // Game states
-    enum class State { PLAYING, GAME_OVER };
+    enum class State { PREPARATION, PLAYING, GAME_OVER };
     
     // Begin with game over
     State state = State::GAME_OVER;
@@ -96,6 +96,7 @@ int main(int, char const**)
     Clock clock;
     float timeSinceLastDifficultyIncrease;
     float timePlayed;
+    float bufferTime;
     
     // Start the game loop
     while (window.isOpen())
@@ -123,7 +124,7 @@ int main(int, char const**)
             // Enter pressed: start game
             if (event.type == Event::KeyPressed && event.key.code == Keyboard::Return && state == State::GAME_OVER) {
                 // Switch game state
-                state = State::PLAYING;
+                state = State::PREPARATION;
                 
                 // Prevent frame jumps
                 clock.restart();
@@ -137,13 +138,14 @@ int main(int, char const**)
                 // Reset time
                 timePlayed = 0.0f;
                 timeSinceLastDifficultyIncrease = 0.0f;
+                bufferTime = 0.0f;
                 
                 // Respawn the player
                 player.spawn(arena);
             }
             
             // Handle player controls while game is playing
-            if (state == State::PLAYING)
+            if (state == State::PLAYING || state == State::PREPARATION)
             {
                 // Arrow up
                 if (event.type == Event::KeyPressed && (event.key.code == Keyboard::Up || event.key.code == Keyboard::W)) {
@@ -194,6 +196,22 @@ int main(int, char const**)
          Update the game scene
          *********************
          */
+        
+        if (state == State::PREPARATION)
+        {
+            Time dt = clock.restart();
+            bufferTime += dt.asSeconds();
+            player.update(dt);
+            if (bufferTime > 2)
+            {
+                state = State::PLAYING;
+            }
+            
+            // Update score
+            std::stringstream ss;
+            ss << "Score: " << score;
+            scoreText.setString(ss.str());
+        }
         
         if (state == State::GAME_OVER)
         {
@@ -286,9 +304,13 @@ int main(int, char const**)
         
         // Draw things here
         window.draw(player.getShape());
-        for (int i = 0; i < numOfActiveDodgeballs; i++)
+        
+        if (state == State::PLAYING || state == State::GAME_OVER)
         {
-            window.draw(enemies[i].getSprite());
+            for (int i = 0; i < numOfActiveDodgeballs; i++)
+            {
+                window.draw(enemies[i].getSprite());
+            }
         }
         
         // End of game stats
