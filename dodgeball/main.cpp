@@ -213,16 +213,6 @@ int main(int, char const**)
             scoreText.setString(ss.str());
         }
         
-        if (state == State::GAME_OVER)
-        {
-            // Stop all other balls
-            for (int i = 0; i < MAX_NUM_DODGEBALLS; i++)
-            {
-                enemies[i].deactivate();
-            }
-            
-        }
-        
         if (state == State::PLAYING)
         {
             // Update the scene
@@ -287,6 +277,15 @@ int main(int, char const**)
                     FloatRect timePlayedRect = timePlayedText.getGlobalBounds();
                     timePlayedText.setOrigin(timePlayedRect.width / 2.0f, 0.0f);
                     timePlayedText.setPosition(resolution.x / 2, 200);
+                }
+            }
+            
+            if (state == State::GAME_OVER)
+            {
+                // Stop all other balls
+                for (int i = 0; i < MAX_NUM_DODGEBALLS; i++)
+                {
+                    enemies[i].deactivate();
                 }
             }
             
