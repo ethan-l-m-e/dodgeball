@@ -252,24 +252,23 @@ int main(int, char const**)
                     if (enemies[i].hasMissed())
                     {
                         score++;
-                    }
-                    
-                    // Update score text
-                    std::stringstream ss;
-                    ss << "Score: " << score;
-                    scoreText.setString(ss.str());
-                    if (score > bestScore)
-                    {
-                        bestScore = score;
+                        
+                        // Update the score
                         std::stringstream ss;
-                        ss << "Best: " << bestScore;
-                        bestScoreText.setString(ss.str());
+                        ss << "Score: " << score;
+                        scoreText.setString(ss.str());
+                        if (score > bestScore)
+                        {
+                            bestScore = score;
+                            std::stringstream ss;
+                            ss << "Best: " << bestScore;
+                            bestScoreText.setString(ss.str());
+                        }
                     }
                     
                     // Spawn inactive enemy
                     enemies[i].spawn(arena, player.getCenter());
-                    
-                } // End enemy update
+                }
                 
                 // Detect collisions
                 if (player.getPosition().intersects(enemies[i].getPosition()))
