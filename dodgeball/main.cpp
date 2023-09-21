@@ -1,4 +1,5 @@
 #include <sstream>
+#include <fstream>
 #include <SFML/Audio.hpp>
 #include <SFML/Graphics.hpp>
 
@@ -51,7 +52,18 @@ int main(int, char const**)
     bestScoreText.setFont(scoreFont);
     bestScoreText.setFillColor(Color::White);
     bestScoreText.setCharacterSize(36);
-    bestScoreText.setString("Best: 0");
+    
+    // Load best score from text file
+    std::ifstream inputFile(resourcePath() + "scores.txt");
+    if (inputFile.is_open())
+    {
+        // Reads the data
+        inputFile >> bestScore;
+        inputFile.close();
+    }
+    std::stringstream ss;
+    ss << "Best: " << bestScore;
+    bestScoreText.setString(ss.str());
     bestScoreText.setPosition(15, scoreText.getGlobalBounds().height + 10 + 10);
     
     // Game over stats
@@ -286,6 +298,15 @@ int main(int, char const**)
                 for (int i = 0; i < MAX_NUM_DODGEBALLS; i++)
                 {
                     enemies[i].deactivate();
+                }
+                
+                // Save best score
+                std::ofstream outputFile(resourcePath() + "scores.txt");
+                if (outputFile.is_open())
+                {
+                    // Write the data
+                    outputFile << bestScore;
+                    outputFile.close();
                 }
             }
             
