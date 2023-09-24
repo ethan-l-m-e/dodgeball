@@ -322,7 +322,7 @@ int main(int, char const**)
         window.clear();
         
         // Draw things here
-        window.draw(player.getShape());
+        window.draw(player.getSprite());
         
         if (state == State::PLAYING || state == State::GAME_OVER)
         {

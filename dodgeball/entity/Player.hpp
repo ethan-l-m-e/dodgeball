@@ -26,6 +26,24 @@ private:
     // Square representing player
     RectangleShape m_Shape;
     
+    // Player sprite
+    Sprite m_Sprite;
+    
+    // Player texture
+    Texture m_IdleTexture;
+    
+    // IntRect to read correct portion of texture
+    IntRect m_TextureRect;
+    
+    // Flip the sprite when changing directions
+    void flipSprite();
+    
+    // Animation of sprite
+    void animate(Time dt);
+    
+    // Elapsed time for calculating which sprite frame to use
+    float m_TimeSinceLastSpriteUpdate;
+    
     // Screen resolution
     IntRect m_Arena;
     
@@ -45,6 +63,9 @@ public:
     
     // Get shape object representing player
     RectangleShape getShape();
+    
+    // Get sprite object representing player
+    Sprite getSprite();
     
     // Where is the center of player
     Vector2f getCenter();

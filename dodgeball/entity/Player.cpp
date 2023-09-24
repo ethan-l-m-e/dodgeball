@@ -7,16 +7,75 @@
 //
 
 #include "Player.hpp"
+#include "ResourcePath.hpp"
 
 Player::Player()
 {
     // How big is the player
     m_Shape.setSize(Vector2f(50, 50));
+    
+    // Load textures and sprite
+    m_IdleTexture.loadFromFile(resourcePath() + "player-idle.png");
+    m_Sprite.setTexture(m_IdleTexture);
+    m_TextureRect = IntRect(0, 0, 50, 50);
+    m_Sprite.setTextureRect(m_TextureRect);
+    
+    // Set elapsed time
+    m_TimeSinceLastSpriteUpdate = 0.0f;
 }
 
 RectangleShape Player::getShape()
 {
     return m_Shape;
+}
+
+Sprite Player::getSprite()
+{
+    return m_Sprite;
+}
+
+void Player::flipSprite()
+{
+    // Set the correct direction
+    if (m_MovingLeft)
+    {
+        m_Sprite.setScale(-1, 1);
+        m_Sprite.setOrigin(50, 0);
+    }
+    if (m_MovingRight)
+    {
+        m_Sprite.setScale(1, 1);
+        m_Sprite.setOrigin(0, 0);
+    }
+}
+
+void Player::animate(Time dt) {
+    
+    // Accumulate time passed since sprite frame change
+    m_TimeSinceLastSpriteUpdate += dt.asSeconds();
+    
+    // Update sprite frame every 0.1 seconds
+    if (m_TimeSinceLastSpriteUpdate > 0.1)
+    {
+        m_TimeSinceLastSpriteUpdate = 0.0f;
+        
+        int left = m_Sprite.getTextureRect().left;
+        
+        // Sprite sheet is 50 x 500, last frame starts at 450
+        if (left == 450)
+        {
+            // Loop back to first frame
+            m_TextureRect.left = 0;
+        }
+        else
+        {
+            // Move to the next frame
+            m_TextureRect.left += 50;
+        }
+        
+        // Update the texture coordinates
+        m_Sprite.setTextureRect(m_TextureRect);
+    }
 }
 
 Vector2f Player::getCenter()
@@ -42,11 +101,17 @@ void Player::moveDown()
 void Player::moveLeft()
 {
     m_MovingLeft = true;
+    
+    // Change sprite to face left
+    flipSprite();
 }
 
 void Player::moveRight()
 {
     m_MovingRight = true;
+    
+    // Change sprite to face right again
+    flipSprite();
 }
 
 void Player::stopUp()
@@ -80,6 +145,7 @@ void Player::spawn(IntRect arena)
     m_Position.x = (m_Arena.width / 2.0f) - (m_Shape.getSize().x / 2.0f);
     m_Position.y = (m_Arena.height / 2.0f) - (m_Shape.getSize().y / 2.0f);
     m_Shape.setPosition(m_Position);
+    m_Sprite.setPosition(m_Position);
     
     // Start player from a still position
     m_MovingUp = false;
@@ -135,4 +201,8 @@ void Player::update(Time dt)
     
     // Moves the shape object associated with player
     m_Shape.setPosition(m_Position);
+    m_Sprite.setPosition(m_Position);
+    
+    // Animate the sprite
+    animate(dt);
 }
