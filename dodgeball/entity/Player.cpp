@@ -70,7 +70,7 @@ void Player::animate(Time dt) {
         {
             m_Sprite.setTexture(m_RunTexture);
             
-            // Sprite sheet is 50 x 400, last frame starts at 350
+            // Sprite sheet is 70 x 560, last frame starts at 510
             if (left >= m_RunTexture.getSize().x - 70)
             {
                 // Loop back to first frame
@@ -87,7 +87,7 @@ void Player::animate(Time dt) {
         {
             m_Sprite.setTexture(m_IdleTexture);
             
-            // Sprite sheet is 50 x 500, last frame starts at 450
+            // Sprite sheet is 70 x 700, last frame starts at 630
             if (left >= m_IdleTexture.getSize().x - 70)
             {
                 // Loop back to first frame
