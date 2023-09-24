@@ -211,26 +211,27 @@ void Player::update(Time dt)
     }
     
     // Prevent movement out of screen
-    float playerRadius = m_Shape.getSize().x / 2;
+    float horizontalPlayerRadius = m_Shape.getSize().x / 2;
+    float verticalPlayerRadius = m_Shape.getSize().y / 2;
     
-    if (m_Position.x > m_Arena.width - playerRadius)
+    if (m_Position.x > m_Arena.width - horizontalPlayerRadius)
     {
-        m_Position.x = m_Arena.width - playerRadius;
+        m_Position.x = m_Arena.width - horizontalPlayerRadius;
     }
     
-    if (m_Position.x < m_Arena.left + playerRadius)
+    if (m_Position.x < m_Arena.left + horizontalPlayerRadius)
     {
-        m_Position.x = m_Arena.left + playerRadius;
+        m_Position.x = m_Arena.left + horizontalPlayerRadius;
     }
     
-    if (m_Position.y > m_Arena.height - playerRadius)
+    if (m_Position.y > m_Arena.height - verticalPlayerRadius)
     {
-        m_Position.y = m_Arena.height - playerRadius;
+        m_Position.y = m_Arena.height - verticalPlayerRadius;
     }
     
-    if (m_Position.y < m_Arena.top + playerRadius)
+    if (m_Position.y < m_Arena.top + verticalPlayerRadius)
     {
-        m_Position.y = m_Arena.top + playerRadius;
+        m_Position.y = m_Arena.top + verticalPlayerRadius;
     }
     
     // Moves the shape object associated with player
