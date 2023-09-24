@@ -12,20 +12,20 @@
 Player::Player()
 {
     // Set the player hitbox size
-    m_Shape.setSize(Vector2f(50, 50));
+    m_Shape.setSize(Vector2f(30, 50));
     
     // Center the player hitbox
-    m_Shape.setOrigin(25, 25);
+    m_Shape.setOrigin(15, 25);
     
     // Load textures and sprite
     m_IdleTexture.loadFromFile(resourcePath() + "player-idle.png"); // 10 frames
     m_RunTexture.loadFromFile(resourcePath() + "player-run.png"); // 8 frames
     m_Sprite.setTexture(m_IdleTexture);
-    m_TextureRect = IntRect(0, 0, 50, 50);
+    m_TextureRect = IntRect(0, 0, 70, 70);
     m_Sprite.setTextureRect(m_TextureRect);
     
     // Center the sprite
-    m_Sprite.setOrigin(25, 25);
+    m_Sprite.setOrigin(35, 35);
     
     // Set elapsed time
     m_TimeSinceLastSpriteUpdate = 0.0f;
@@ -71,7 +71,7 @@ void Player::animate(Time dt) {
             m_Sprite.setTexture(m_RunTexture);
             
             // Sprite sheet is 50 x 400, last frame starts at 350
-            if (left >= 350)
+            if (left >= m_RunTexture.getSize().x - 70)
             {
                 // Loop back to first frame
                 m_TextureRect.left = 0;
@@ -79,7 +79,7 @@ void Player::animate(Time dt) {
             else
             {
                 // Move to the next frame
-                m_TextureRect.left += 50;
+                m_TextureRect.left += 70;
             }
         }
         // Else player is idle
@@ -88,7 +88,7 @@ void Player::animate(Time dt) {
             m_Sprite.setTexture(m_IdleTexture);
             
             // Sprite sheet is 50 x 500, last frame starts at 450
-            if (left >= 450)
+            if (left >= m_IdleTexture.getSize().x - 70)
             {
                 // Loop back to first frame
                 m_TextureRect.left = 0;
@@ -96,7 +96,7 @@ void Player::animate(Time dt) {
             else
             {
                 // Move to the next frame
-                m_TextureRect.left += 50;
+                m_TextureRect.left += 70;
             }
         }
         

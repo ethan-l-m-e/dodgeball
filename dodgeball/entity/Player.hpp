@@ -39,6 +39,8 @@ private:
     // Flip the sprite when changing directions
     void flipSprite();
     
+    void scaleSprite();
+    
     // Animation of sprite
     void animate(Time dt);
     
