@@ -15,7 +15,8 @@ Player::Player()
     m_Shape.setSize(Vector2f(50, 50));
     
     // Load textures and sprite
-    m_IdleTexture.loadFromFile(resourcePath() + "player-idle.png");
+    m_IdleTexture.loadFromFile(resourcePath() + "player-idle.png"); // 10 frames
+    m_RunTexture.loadFromFile(resourcePath() + "player-run.png"); // 8 frames
     m_Sprite.setTexture(m_IdleTexture);
     m_TextureRect = IntRect(0, 0, 50, 50);
     m_Sprite.setTextureRect(m_TextureRect);
@@ -61,21 +62,56 @@ void Player::animate(Time dt) {
         
         int left = m_Sprite.getTextureRect().left;
         
-        // Sprite sheet is 50 x 500, last frame starts at 450
-        if (left == 450)
+        if (isMoving())
         {
-            // Loop back to first frame
-            m_TextureRect.left = 0;
+            m_Sprite.setTexture(m_RunTexture);
+            
+            // Sprite sheet is 50 x 400, last frame starts at 350
+            if (left >= 350)
+            {
+                // Loop back to first frame
+                m_TextureRect.left = 0;
+            }
+            else
+            {
+                // Move to the next frame
+                m_TextureRect.left += 50;
+            }
         }
+        // Else player is idle
         else
         {
-            // Move to the next frame
-            m_TextureRect.left += 50;
+            m_Sprite.setTexture(m_IdleTexture);
+            
+            // Sprite sheet is 50 x 500, last frame starts at 450
+            if (left >= 450)
+            {
+                // Loop back to first frame
+                m_TextureRect.left = 0;
+            }
+            else
+            {
+                // Move to the next frame
+                m_TextureRect.left += 50;
+            }
         }
         
         // Update the texture coordinates
         m_Sprite.setTextureRect(m_TextureRect);
     }
+}
+
+bool Player::isMoving()
+{
+    if (m_MovingUp ||
+        m_MovingDown ||
+        m_MovingLeft ||
+        m_MovingRight)
+    {
+        return true;
+    }
+    
+    return false;
 }
 
 Vector2f Player::getCenter()
@@ -101,17 +137,11 @@ void Player::moveDown()
 void Player::moveLeft()
 {
     m_MovingLeft = true;
-    
-    // Change sprite to face left
-    flipSprite();
 }
 
 void Player::moveRight()
 {
     m_MovingRight = true;
-    
-    // Change sprite to face right again
-    flipSprite();
 }
 
 void Player::stopUp()
@@ -205,4 +235,5 @@ void Player::update(Time dt)
     
     // Animate the sprite
     animate(dt);
+    flipSprite();
 }

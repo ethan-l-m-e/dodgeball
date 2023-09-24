@@ -29,8 +29,9 @@ private:
     // Player sprite
     Sprite m_Sprite;
     
-    // Player texture
+    // Player textures
     Texture m_IdleTexture;
+    Texture m_RunTexture;
     
     // IntRect to read correct portion of texture
     IntRect m_TextureRect;
@@ -55,6 +56,9 @@ private:
     bool m_MovingDown = false;
     bool m_MovingLeft = false;
     bool m_MovingRight = false;
+    
+    // Is player moving at all
+    bool isMoving();
     
 public:
     
