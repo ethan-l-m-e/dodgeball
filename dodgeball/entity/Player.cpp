@@ -11,8 +11,11 @@
 
 Player::Player()
 {
-    // How big is the player
+    // Set the player hitbox size
     m_Shape.setSize(Vector2f(50, 50));
+    
+    // Center the player hitbox
+    m_Shape.setOrigin(25, 25);
     
     // Load textures and sprite
     m_IdleTexture.loadFromFile(resourcePath() + "player-idle.png"); // 10 frames
@@ -20,6 +23,9 @@ Player::Player()
     m_Sprite.setTexture(m_IdleTexture);
     m_TextureRect = IntRect(0, 0, 50, 50);
     m_Sprite.setTextureRect(m_TextureRect);
+    
+    // Center the sprite
+    m_Sprite.setOrigin(25, 25);
     
     // Set elapsed time
     m_TimeSinceLastSpriteUpdate = 0.0f;
@@ -41,12 +47,10 @@ void Player::flipSprite()
     if (m_MovingLeft)
     {
         m_Sprite.setScale(-1, 1);
-        m_Sprite.setOrigin(50, 0);
     }
     if (m_MovingRight)
     {
         m_Sprite.setScale(1, 1);
-        m_Sprite.setOrigin(0, 0);
     }
 }
 
@@ -172,8 +176,8 @@ void Player::spawn(IntRect arena)
     m_Arena.top = arena.top;
     
     // Spawn in screen center
-    m_Position.x = (m_Arena.width / 2.0f) - (m_Shape.getSize().x / 2.0f);
-    m_Position.y = (m_Arena.height / 2.0f) - (m_Shape.getSize().y / 2.0f);
+    m_Position.x = (m_Arena.width / 2.0f);
+    m_Position.y = (m_Arena.height / 2.0f);
     m_Shape.setPosition(m_Position);
     m_Sprite.setPosition(m_Position);
     
@@ -207,26 +211,26 @@ void Player::update(Time dt)
     }
     
     // Prevent movement out of screen
-    float playerLength = m_Shape.getSize().x;
+    float playerRadius = m_Shape.getSize().x / 2;
     
-    if (m_Position.x > m_Arena.width - playerLength)
+    if (m_Position.x > m_Arena.width - playerRadius)
     {
-        m_Position.x = m_Arena.width - playerLength;
+        m_Position.x = m_Arena.width - playerRadius;
     }
     
-    if (m_Position.x < m_Arena.left)
+    if (m_Position.x < m_Arena.left + playerRadius)
     {
-        m_Position.x = m_Arena.left;
+        m_Position.x = m_Arena.left + playerRadius;
     }
     
-    if (m_Position.y > m_Arena.height - playerLength)
+    if (m_Position.y > m_Arena.height - playerRadius)
     {
-        m_Position.y = m_Arena.height - playerLength;
+        m_Position.y = m_Arena.height - playerRadius;
     }
     
-    if (m_Position.y < m_Arena.top)
+    if (m_Position.y < m_Arena.top + playerRadius)
     {
-        m_Position.y = m_Arena.top;
+        m_Position.y = m_Arena.top + playerRadius;
     }
     
     // Moves the shape object associated with player
