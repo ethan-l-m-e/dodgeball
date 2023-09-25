@@ -12,10 +12,10 @@
 Player::Player()
 {
     // Set the player hitbox size
-    m_Shape.setSize(Vector2f(30, 50));
+    m_Shape.setSize(Vector2f(20, 33));
     
     // Center the player hitbox
-    m_Shape.setOrigin(15, 25);
+    m_Shape.setOrigin(10, 14);
     
     // Load textures and sprite
     m_IdleTexture.loadFromFile(resourcePath() + "player-idle.png"); // 10 frames
