@@ -15,7 +15,6 @@
 		E63F85522ABFC3DE00B3E7F5 /* player-run.png in Resources */ = {isa = PBXBuildFile; fileRef = E63F85512ABFC3DE00B3E7F5 /* player-run.png */; };
 		E6B4FBA92A8536B600FAC01B /* Player.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E6B4FBA72A8536B600FAC01B /* Player.cpp */; };
 		E6B4FBAD2A86D40100FAC01B /* Ball.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E6B4FBAB2A86D40100FAC01B /* Ball.cpp */; };
-		E6B4FBB42A8B65A800FAC01B /* gameplay.ttf in Resources */ = {isa = PBXBuildFile; fileRef = E6B4FBB32A8B65A800FAC01B /* gameplay.ttf */; };
 		E6EE88582A84AEFD003ABF14 /* ResourcePath.mm in Sources */ = {isa = PBXBuildFile; fileRef = E6EE88572A84AEFD003ABF14 /* ResourcePath.mm */; };
 		E6EE885B2A84AEFD003ABF14 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E6EE885A2A84AEFD003ABF14 /* main.cpp */; };
 /* End PBXBuildFile section */
@@ -32,7 +31,6 @@
 		E6B4FBA82A8536B600FAC01B /* Player.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Player.hpp; sourceTree = "<group>"; };
 		E6B4FBAB2A86D40100FAC01B /* Ball.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Ball.cpp; sourceTree = "<group>"; };
 		E6B4FBAC2A86D40100FAC01B /* Ball.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Ball.hpp; sourceTree = "<group>"; };
-		E6B4FBB32A8B65A800FAC01B /* gameplay.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = gameplay.ttf; sourceTree = "<group>"; };
 		E6EE88522A84AEFD003ABF14 /* dodgeball.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = dodgeball.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E6EE88562A84AEFD003ABF14 /* dodgeball-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "dodgeball-Info.plist"; path = "../dodgeball-Info.plist"; sourceTree = "<group>"; };
 		E6EE88572A84AEFD003ABF14 /* ResourcePath.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = ResourcePath.mm; sourceTree = "<group>"; };
@@ -93,7 +91,6 @@
 			isa = PBXGroup;
 			children = (
 				E63F85402AB9798E00B3E7F5 /* vcr-osd-mono.ttf */,
-				E6B4FBB32A8B65A800FAC01B /* gameplay.ttf */,
 			);
 			path = fonts;
 			sourceTree = "<group>";
@@ -200,7 +197,6 @@
 				E63F85502ABD1CED00B3E7F5 /* player-idle.png in Resources */,
 				E63F853D2AB36EEB00B3E7F5 /* dodgeball.png in Resources */,
 				E63F854A2ABC3DA600B3E7F5 /* scores.txt in Resources */,
-				E6B4FBB42A8B65A800FAC01B /* gameplay.ttf in Resources */,
 				E63F85412AB9798E00B3E7F5 /* vcr-osd-mono.ttf in Resources */,
 				E63F85472ABAAC3900B3E7F5 /* controls.png in Resources */,
 				E63F85522ABFC3DE00B3E7F5 /* player-run.png in Resources */,
