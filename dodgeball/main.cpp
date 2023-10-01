@@ -101,6 +101,12 @@ int main(int, char const**)
         
     player.spawn(arena);
     
+    // Sounds
+    SoundBuffer ballThrowBuffer;
+    ballThrowBuffer.loadFromFile(resourcePath() + "ball-throw.wav");
+    Sound ballThrow;
+    ballThrow.setBuffer(ballThrowBuffer);
+    
     // Seed the random generator
     srand((int) time(0));
 
@@ -270,6 +276,9 @@ int main(int, char const**)
                     
                     // Spawn inactive enemy
                     enemies[i].spawn(arena, player.getCenter());
+                    
+                    // Play sound
+                    ballThrow.play();
                 }
                 
                 // Detect collisions

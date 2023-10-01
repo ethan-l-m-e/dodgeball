@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		E60929142AC8984E00E9E9FB /* gameplay.ttf in Resources */ = {isa = PBXBuildFile; fileRef = E60929132AC8984E00E9E9FB /* gameplay.ttf */; };
+		E60929192AC8ACCB00E9E9FB /* ball-throw.wav in Resources */ = {isa = PBXBuildFile; fileRef = E60929182AC8ACCB00E9E9FB /* ball-throw.wav */; };
 		E63F853D2AB36EEB00B3E7F5 /* dodgeball.png in Resources */ = {isa = PBXBuildFile; fileRef = E63F853C2AB36EEB00B3E7F5 /* dodgeball.png */; };
 		E63F85412AB9798E00B3E7F5 /* vcr-osd-mono.ttf in Resources */ = {isa = PBXBuildFile; fileRef = E63F85402AB9798E00B3E7F5 /* vcr-osd-mono.ttf */; };
 		E63F85472ABAAC3900B3E7F5 /* controls.png in Resources */ = {isa = PBXBuildFile; fileRef = E63F85462ABAAC3900B3E7F5 /* controls.png */; };
@@ -22,6 +23,7 @@
 
 /* Begin PBXFileReference section */
 		E60929132AC8984E00E9E9FB /* gameplay.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = gameplay.ttf; sourceTree = "<group>"; };
+		E60929182AC8ACCB00E9E9FB /* ball-throw.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = "ball-throw.wav"; sourceTree = "<group>"; };
 		E63F853C2AB36EEB00B3E7F5 /* dodgeball.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = dodgeball.png; sourceTree = "<group>"; };
 		E63F85402AB9798E00B3E7F5 /* vcr-osd-mono.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "vcr-osd-mono.ttf"; sourceTree = "<group>"; };
 		E63F85462ABAAC3900B3E7F5 /* controls.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = controls.png; sourceTree = "<group>"; };
@@ -51,6 +53,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		E60929152AC8AAB500E9E9FB /* sounds */ = {
+			isa = PBXGroup;
+			children = (
+				E60929182AC8ACCB00E9E9FB /* ball-throw.wav */,
+			);
+			path = sounds;
+			sourceTree = "<group>";
+		};
 		E63F853B2AB36EC000B3E7F5 /* graphics */ = {
 			isa = PBXGroup;
 			children = (
@@ -118,6 +128,7 @@
 		E6EE88542A84AEFD003ABF14 /* dodgeball */ = {
 			isa = PBXGroup;
 			children = (
+				E60929152AC8AAB500E9E9FB /* sounds */,
 				E63F85482ABC3D6E00B3E7F5 /* gamedata */,
 				E63F853B2AB36EC000B3E7F5 /* graphics */,
 				E6B4FBAE2A8B5E7400FAC01B /* fonts */,
@@ -203,6 +214,7 @@
 				E63F854A2ABC3DA600B3E7F5 /* scores.txt in Resources */,
 				E63F85412AB9798E00B3E7F5 /* vcr-osd-mono.ttf in Resources */,
 				E63F85472ABAAC3900B3E7F5 /* controls.png in Resources */,
+				E60929192AC8ACCB00E9E9FB /* ball-throw.wav in Resources */,
 				E63F85522ABFC3DE00B3E7F5 /* player-run.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
