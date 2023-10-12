@@ -49,6 +49,14 @@ int main(int, char const**)
     
     int bestScore = 0;
     
+    // Timer text
+    Text timerText;
+    timerText.setFont(scoreFont);
+    timerText.setFillColor(Color::White);
+    timerText.setPosition(15, 10);
+    timerText.setCharacterSize(36);
+    timerText.setString("0");
+    timerText.setPosition(resolution.x / 2 - 50, 10);
     
     // Load best score from text file
     std::ifstream inputFile(resourcePath() + "scores.txt");
@@ -229,6 +237,7 @@ int main(int, char const**)
             if (bufferTime > 2)
             {
                 state = State::PLAYING;
+                timerText.setString("0");
             }
             
             // Update score
@@ -243,6 +252,11 @@ int main(int, char const**)
             Time dt = clock.restart();
             timePlayed += dt.asSeconds();
             timeSinceLastDifficultyIncrease += dt.asSeconds();
+            
+            // Update timer displayed
+            std::stringstream ss;
+            ss << roundf(timePlayed * 100) / 100 << "s";
+            timerText.setString(ss.str());
             
             // Increase dodgeball number every 15 seconds
             if (timeSinceLastDifficultyIncrease > 15 && numOfActiveDodgeballs < MAX_NUM_DODGEBALLS)
@@ -341,6 +355,11 @@ int main(int, char const**)
         
         // Draw things here
         window.draw(player.getSprite());
+        
+        if (state == State::PLAYING)
+        {
+            window.draw(timerText);
+        }
         
         if (state == State::PLAYING || state == State::GAME_OVER)
         {
