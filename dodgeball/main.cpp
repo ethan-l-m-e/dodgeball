@@ -48,10 +48,7 @@ int main(int, char const**)
     scoreText.setString("Score: 0");
     
     int bestScore = 0;
-    Text bestScoreText;
-    bestScoreText.setFont(scoreFont);
-    bestScoreText.setFillColor(Color::White);
-    bestScoreText.setCharacterSize(36);
+    
     
     // Load best score from text file
     std::ifstream inputFile(resourcePath() + "scores.txt");
@@ -61,10 +58,6 @@ int main(int, char const**)
         inputFile >> bestScore;
         inputFile.close();
     }
-    std::stringstream ss;
-    ss << "Best: " << bestScore;
-    bestScoreText.setString(ss.str());
-    bestScoreText.setPosition(15, scoreText.getGlobalBounds().height + 10 + 10);
     
     // Game over stats
     Font gameOverFont;
@@ -75,9 +68,18 @@ int main(int, char const**)
     timePlayedText.setFillColor(Color::White);
     timePlayedText.setCharacterSize(36);
     
-    RectangleShape gameOverBackground;
-    gameOverBackground.setSize(resolution);
-    gameOverBackground.setFillColor(Color(0, 0, 0, 128));
+    Text bestScoreText;
+    bestScoreText.setFont(gameOverFont);
+    bestScoreText.setFillColor(Color::White);
+    bestScoreText.setCharacterSize(36);
+    
+    std::stringstream ss;
+    ss << "Best: " << bestScore;
+    
+    bestScoreText.setString(ss.str());
+    FloatRect bestScoreRect = bestScoreText.getGlobalBounds();
+    bestScoreText.setOrigin(bestScoreRect.width / 2.0f, 0.0f);
+    bestScoreText.setPosition(resolution.x / 2, 250);
     
     Text gameOverText;
     gameOverText.setFont(gameOverFont);
@@ -87,6 +89,10 @@ int main(int, char const**)
     FloatRect gameOverRect = gameOverText.getGlobalBounds();
     gameOverText.setOrigin(gameOverRect.width / 2.0f, 0.0f);
     gameOverText.setPosition(resolution.x / 2, 350);
+    
+    RectangleShape gameOverBackground;
+    gameOverBackground.setSize(resolution);
+    gameOverBackground.setFillColor(Color(0, 0, 0, 128));
     
     // Game directions
     Texture textureWasd;
@@ -298,6 +304,9 @@ int main(int, char const**)
                     FloatRect timePlayedRect = timePlayedText.getGlobalBounds();
                     timePlayedText.setOrigin(timePlayedRect.width / 2.0f, 0.0f);
                     timePlayedText.setPosition(resolution.x / 2, 200);
+                    FloatRect bestScoreRect = bestScoreText.getGlobalBounds();
+                    bestScoreText.setOrigin(bestScoreRect.width / 2.0f, 0.0f);
+                    bestScoreText.setPosition(resolution.x / 2, 250);
                 }
             }
             
@@ -350,6 +359,7 @@ int main(int, char const**)
             // Draw text stats
             window.draw(timePlayedText);
             window.draw(gameOverText);
+            window.draw(bestScoreText);
             
             // Draw instructions
             window.draw(spriteWasd);
@@ -357,7 +367,6 @@ int main(int, char const**)
 
         // Always display updated score
         window.draw(scoreText);
-        window.draw(bestScoreText);
                 
         // Update the window
         window.display();
