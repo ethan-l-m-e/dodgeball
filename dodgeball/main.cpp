@@ -58,6 +58,17 @@ int main(int, char const**)
     timerText.setString("0");
     timerText.setPosition(resolution.x / 2 - 50, 10);
     
+    // Countdown text
+    Text countdownText;
+    countdownText.setFont(scoreFont);
+    countdownText.setFillColor(Color::White);
+    
+    countdownText.setCharacterSize(36);
+    countdownText.setString("0");
+    FloatRect countdownRect = countdownText.getGlobalBounds();
+    countdownText.setOrigin(countdownRect.width / 2.0f, countdownRect.height / 2.0f);
+    countdownText.setPosition(resolution.x / 2, resolution.y / 2);
+    
     // Load best score from text file
     std::ifstream inputFile(resourcePath() + "scores.txt");
     if (inputFile.is_open())
@@ -234,9 +245,25 @@ int main(int, char const**)
             Time dt = clock.restart();
             bufferTime += dt.asSeconds();
             player.update(dt);
+            
+            // Countdown
             if (bufferTime > 2)
             {
+                countdownText.setString("1");
+            }
+            else if (bufferTime > 1)
+            {
+                countdownText.setString("2");
+            }
+            else if (bufferTime > 0)
+            {
+                countdownText.setString("3");
+            }
+            
+            if (bufferTime > 3)
+            {
                 state = State::PLAYING;
+                countdownText.setString("3");
                 timerText.setString("0");
             }
             
@@ -355,6 +382,10 @@ int main(int, char const**)
         
         // Draw things here
         window.draw(player.getSprite());
+        if (state == State::PREPARATION)
+        {
+            window.draw(countdownText);
+        }
         
         if (state == State::PLAYING)
         {
